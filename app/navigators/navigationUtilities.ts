@@ -49,8 +49,8 @@ export function getActiveRouteName(state: NavigationState | PartialState<Navigat
  * @returns {void}
  */
 export function useBackButtonHandler(canExit: (routeName: string) => boolean) {
-  // ignore unless android... no back button!
-  if (Platform.OS !== "android") return
+  // ignore unless android or TV... no back button!
+  if (Platform.OS !== "android" && !Platform.isTV) return
 
   // The reason we're using a ref here is because we need to be able
   // to update the canExit function without re-setting up all the listeners
