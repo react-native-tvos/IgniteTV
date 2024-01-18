@@ -28,7 +28,7 @@ const ListViewComponent = forwardRef(
   <T,>(props: ListViewProps<T>, ref: React.ForwardedRef<ListViewRef<T>>) => {
     const ListComponentWrapper = isRTL ? FlatList : FlashList
 
-    return <ListComponentWrapper {...props} ref={ref} />
+    return <ListComponentWrapper {...props} estimatedItemSize={57} ref={ref} />
   },
 )
 

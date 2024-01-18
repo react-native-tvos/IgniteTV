@@ -2,7 +2,7 @@ import i18n from "i18n-js"
 import React from "react"
 import { StyleProp, Text as RNText, TextProps as RNTextProps, TextStyle } from "react-native"
 import { isRTL, translate, TxKeyPath } from "../i18n"
-import { colors, typography } from "../theme"
+import { colors, typography, spacing } from "../theme"
 
 type Sizes = keyof typeof $sizeStyles
 type Weights = keyof typeof typography.primary
@@ -74,13 +74,13 @@ export function Text(props: TextProps) {
 }
 
 const $sizeStyles = {
-  xxl: { fontSize: 36, lineHeight: 44 } satisfies TextStyle,
-  xl: { fontSize: 24, lineHeight: 34 } satisfies TextStyle,
-  lg: { fontSize: 20, lineHeight: 32 } satisfies TextStyle,
-  md: { fontSize: 18, lineHeight: 26 } satisfies TextStyle,
-  sm: { fontSize: 16, lineHeight: 24 } satisfies TextStyle,
-  xs: { fontSize: 14, lineHeight: 21 } satisfies TextStyle,
-  xxs: { fontSize: 12, lineHeight: 18 } satisfies TextStyle,
+  xxl: { fontSize: spacing._36, lineHeight: spacing._44 } satisfies TextStyle,
+  xl: { fontSize: spacing._24, lineHeight: spacing._34 } satisfies TextStyle,
+  lg: { fontSize: spacing._20, lineHeight: spacing._32 } satisfies TextStyle,
+  md: { fontSize: spacing._18, lineHeight: spacing._26 } satisfies TextStyle,
+  sm: { fontSize: spacing._16, lineHeight: spacing._24 } satisfies TextStyle,
+  xs: { fontSize: spacing._14, lineHeight: spacing._21 } satisfies TextStyle,
+  xxs: { fontSize: spacing._12, lineHeight: spacing._18 } satisfies TextStyle,
 }
 
 const $fontWeightStyles = Object.entries(typography.primary).reduce((acc, [weight, fontFamily]) => {
