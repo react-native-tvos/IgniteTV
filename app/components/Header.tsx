@@ -300,7 +300,7 @@ const $actionIconContainer: ViewStyle = {
 }
 
 const $actionFillerContainer: ViewStyle = {
-  width: 16,
+  width: spacing._16,
 }
 
 const $titleWrapperCenter: ViewStyle = {

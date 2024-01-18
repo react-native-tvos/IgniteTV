@@ -248,11 +248,11 @@ const $containerBase: ViewStyle = {
   padding: spacing.xs,
   borderWidth: 1,
   shadowColor: colors.palette.neutral800,
-  shadowOffset: { width: 0, height: 12 },
+  shadowOffset: { width: 0, height: spacing._12 },
   shadowOpacity: 0.08,
-  shadowRadius: 12.81,
-  elevation: 16,
-  minHeight: 96,
+  shadowRadius: spacing._13,
+  elevation: spacing._16,
+  minHeight: spacing._96,
   flexDirection: "row",
 }
 
