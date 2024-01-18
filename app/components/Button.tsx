@@ -117,26 +117,28 @@ export function Button(props: ButtonProps) {
   /**
    * @param {PressableStateCallbackType} root0 - The root object containing the pressed state.
    * @param {boolean} root0.pressed - The pressed state.
+   * @param {boolean} root0.focused - The focused state.
    * @returns {StyleProp<ViewStyle>} The view style based on the pressed state.
    */
-  function $viewStyle({ pressed }: PressableStateCallbackType): StyleProp<ViewStyle> {
+  function $viewStyle({ pressed, focused }: PressableStateCallbackType): StyleProp<ViewStyle> {
     return [
       $viewPresets[preset],
       $viewStyleOverride,
-      !!pressed && [$pressedViewPresets[preset], $pressedViewStyleOverride],
+      (!!pressed || !!focused) && [$pressedViewPresets[preset], $pressedViewStyleOverride],
       !!disabled && $disabledViewStyleOverride,
     ]
   }
   /**
    * @param {PressableStateCallbackType} root0 - The root object containing the pressed state.
    * @param {boolean} root0.pressed - The pressed state.
+   * @param {boolean} root0.focused - The focused state.
    * @returns {StyleProp<TextStyle>} The text style based on the pressed state.
    */
-  function $textStyle({ pressed }: PressableStateCallbackType): StyleProp<TextStyle> {
+  function $textStyle({ pressed, focused }: PressableStateCallbackType): StyleProp<TextStyle> {
     return [
       $textPresets[preset],
       $textStyleOverride,
-      !!pressed && [$pressedTextPresets[preset], $pressedTextStyleOverride],
+      (!!pressed || !!focused) && [$pressedTextPresets[preset], $pressedTextStyleOverride],
       !!disabled && $disabledTextStyleOverride,
     ]
   }
@@ -173,8 +175,8 @@ export function Button(props: ButtonProps) {
 }
 
 const $baseViewStyle: ViewStyle = {
-  minHeight: 56,
-  borderRadius: 4,
+  minHeight: spacing._56,
+  borderRadius: spacing._4,
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "row",
@@ -184,8 +186,8 @@ const $baseViewStyle: ViewStyle = {
 }
 
 const $baseTextStyle: TextStyle = {
-  fontSize: 16,
-  lineHeight: 20,
+  fontSize: spacing._16,
+  lineHeight: spacing._20,
   fontFamily: typography.primary.medium,
   textAlign: "center",
   flexShrink: 1,
