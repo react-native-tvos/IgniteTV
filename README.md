@@ -14,6 +14,48 @@ Currently includes:
 - TypeScript
 - And more!
 
+## TV quick start
+
+This app uses the Expo SDK 50 preview, that will compile and run on Apple TV and Android TV, and an early version of the config plugin `@react-native-tvos/config-tv` that will cause prebuild to configure the iOS and Android folders for TV builds.
+
+To try TV builds:
+
+- Clone this repo
+- Then do
+
+```sh
+yarn
+export EXPO_TV=1
+npx expo prebuild --clean --no-install
+yarn ios # Builds and runs the Ignite boilerplate on Apple TV
+yarn android --device tv_api_31 # Builds and runs the Ignite boilerplate on the named Android TV emulator
+```
+
+To go back to phone builds:
+
+```sh
+unset EXPO_TV
+npx expo prebuild --clean --no-install
+yarn ios # Builds and runs the Ignite boilerplate on an iPhone simulator
+yarn android --device pixel_6_api_31 # Builds and runs the Ignite boilerplate on the named Android phone emulator
+```
+
+You can initiate your own TV app by executing
+
+```sh
+npx ignite-cli@9.5.0 new IgniteTV --workflow=prebuild --yes
+```
+
+and then applying the changes in this repo.
+
+The original demo code will work on TV, once the required dependencies and `app.json` changes are applied. This repo includes additional commits to improve the appearance of the demo code on TV:
+
+- Changes to highlight controls when focused by the TV focus engine
+- Scaling of component sizes for TV
+- Better TV layout
+- React Navigation 7.0.0 alpha, with a patch to `@react-navigation/bottom-tabs` to allow the tab navigator to appear at the top of the screen for TV
+  - (the patch has already been merged to the React Navigation repo and will be included in the released 7.0.0)
+
 ## Quick Start
 
 The Ignite boilerplate project's structure will look similar to this:
