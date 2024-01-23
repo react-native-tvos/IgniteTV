@@ -31,7 +31,8 @@
         "image": "./assets/images/splash-logo-android-universal.png",
         "resizeMode": "contain",
         "backgroundColor": "#191015"
-      }
+      },
+      "userInterfaceStyle": "light"
     },
     "ios": {
       "icon": "./assets/images/app-icon-ios.png",
@@ -42,7 +43,8 @@
         "tabletImage": "./assets/images/splash-logo-ios-tablet.png",
         "resizeMode": "contain",
         "backgroundColor": "#191015"
-      }
+      },
+      "userInterfaceStyle": "light"
     },
     "web": {
       "favicon": "./assets/images/app-icon-web-favicon.png",
