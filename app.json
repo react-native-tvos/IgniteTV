@@ -54,6 +54,13 @@
       "bundler": "metro"
     },
     "plugins": [
+      [
+        "@react-native-tvos/config-tv",
+        {
+          "showVerboseWarnings": true
+        }
+      ],
+      "expo-font",
       "expo-localization",
       [
         "expo-build-properties",
@@ -66,8 +73,7 @@
             "newArchEnabled": false
           }
         }
-      ],
-      "expo-font"
+      ]
     ],
     "experiments": {
       "tsconfigPaths": true

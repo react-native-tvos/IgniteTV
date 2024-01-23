@@ -34,6 +34,7 @@
     "@expo-google-fonts/space-grotesk": "^0.2.2",
     "@expo/metro-runtime": "^3.1.1",
     "@react-native-async-storage/async-storage": "^1.21.0",
+    "@react-native-tvos/config-tv": "^0.0.4",
     "@react-navigation/bottom-tabs": "^6.3.2",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.0.2",
@@ -43,7 +44,6 @@
     "expo": "^50.0.0",
     "expo-application": "~5.8.3",
     "expo-build-properties": "~0.11.0",
-    "expo-dev-client": "~3.3.6",
     "expo-font": "~11.10.2",
     "expo-linking": "~6.2.2",
     "expo-localization": "~14.8.3",
@@ -55,7 +55,7 @@
     "mobx-state-tree": "5.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.73.4",
+    "react-native": "npm:react-native-tvos@^0.73.2-0",
     "react-native-drawer-layout": "4.0.0-alpha.1",
     "react-native-gesture-handler": "~2.14.0",
     "react-native-reanimated": "~3.6.0",
@@ -102,6 +102,13 @@
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
     "typescript": "5.3.2"
+  },
+  "expo": {
+    "install": {
+      "exclude": [
+        "react-native"
+      ]
+    }
   },
   "engines": {
     "node": ">=18"
