@@ -56,7 +56,12 @@
       "bundler": "metro"
     },
     "plugins": [
-      "@react-native-tvos/config-tv",
+      [
+        "@react-native-tvos/config-tv",
+        {
+          "androidTVBanner": "assets/images/tv_banner.png"
+        }
+      ],
       "expo-font",
       "expo-localization",
       [
