@@ -4,6 +4,7 @@
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "brand": "node scripts/brandassetsextract.js",
     "compile": "tsc --noEmit -p . --pretty",
     "format": "prettier --write \"app/**/*.{js,jsx,json,md,ts,tsx}\"",
     "lint": "eslint App.tsx app test --fix --ext .js,.ts,.tsx && npm run format",
@@ -73,7 +74,7 @@
     "@babel/plugin-transform-template-literals": "^7.0.0",
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.20.0",
-    "@react-native-tvos/config-tv": "^0.0.5",
+    "@react-native-tvos/config-tv": "^0.0.6",
     "@types/i18n-js": "3.8.2",
     "@types/jest": "^29.2.1",
     "@types/react": "~18.2.14",

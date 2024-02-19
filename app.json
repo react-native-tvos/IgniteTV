@@ -59,7 +59,15 @@
       [
         "@react-native-tvos/config-tv",
         {
-          "androidTVBanner": "assets/images/tv_banner.png"
+          "androidTVBanner": "./assets/images/tv_banner.png",
+          "appleTVImages": {
+            "icon": "./assets/images/ignite-tvos-1280x768.png",
+            "iconSmall": "./assets/images/ignite-tvos-400x240.png",
+            "topShelf": "./assets/images/ignite-tvos-1920x720.png",
+            "topShelf2x": "./assets/images/ignite-tvos-3840x1440.png",
+            "topShelfWide": "./assets/images/ignite-tvos-2320x720.png",
+            "topShelfWide2x": "./assets/images/ignite-tvos-4640x1440.png"
+          }
         }
       ],
       "expo-font",
