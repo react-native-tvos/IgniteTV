@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React from "react"
-import { TextStyle, ViewStyle } from "react-native"
+import { Platform, TextStyle, ViewStyle } from "react-native"
 import { Icon, TextField } from "../../../components"
 import { colors, spacing } from "../../../theme"
 import { Demo } from "../DemoShowroomScreen"
@@ -118,13 +118,23 @@ export const DemoTextField: Demo = {
 
       <DemoDivider size={24} />
 
-      <TextField
-        label="Supports Multiline"
-        helper="Enables a taller input for multiline text."
-        value="Eiusmod exercitation mollit elit magna occaecat eiusmod Lorem minim veniam. Laborum Lorem velit velit minim irure ad in ut adipisicing consectetur."
-        multiline
-        RightAccessory={(props) => <Icon icon="ladybug" containerStyle={props.style} size={21} />}
-      />
+      {Platform.isTV && Platform.OS === "ios" ? (
+        <TextField
+          label="Apple TV ignores multiline property even if set"
+          helper=""
+          value="Eiusmod exercitation mollit elit magna occaecat eiusmod Lorem minim veniam. Laborum Lorem velit velit minim irure ad in ut adipisicing consectetur."
+          multiline
+          RightAccessory={(props) => <Icon icon="ladybug" containerStyle={props.style} size={21} />}
+        />
+      ) : (
+        <TextField
+          label="Supports Multiline"
+          helper="Enables a taller input for multiline text."
+          value="Eiusmod exercitation mollit elit magna occaecat eiusmod Lorem minim veniam. Laborum Lorem velit velit minim irure ad in ut adipisicing consectetur."
+          multiline
+          RightAccessory={(props) => <Icon icon="ladybug" containerStyle={props.style} size={21} />}
+        />
+      )}
     </DemoUseCase>,
 
     <DemoUseCase name="Styling" description="The component can be styled easily.">
