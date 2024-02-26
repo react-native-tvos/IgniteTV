@@ -1,9 +1,18 @@
 /**
   Use these spacings for margins/paddings and other whitespace throughout your app.
  */
-import { Platform } from "react-native"
+import { Dimensions, Platform } from "react-native"
 
-const scale = Platform.isTV ? (Platform.OS === "ios" ? 1.5 : 0.7) : 1
+let _scale: number | undefined
+
+const getScale = () => {
+  if (_scale === undefined) {
+    _scale = Dimensions.get("screen").width / 1000
+  }
+  return _scale
+}
+
+const scale = Platform.isTV ? getScale() : 1
 
 export const spacing = {
   xxxs: 2 * scale,
