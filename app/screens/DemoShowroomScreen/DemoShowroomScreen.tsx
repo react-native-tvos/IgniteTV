@@ -1,6 +1,6 @@
 import { Link, RouteProp, useRoute } from "@react-navigation/native"
 import React, { FC, ReactElement, useEffect, useRef, useState } from "react"
-import { Image, ImageStyle, Platform, SectionList, TextStyle, View, ViewStyle } from "react-native"
+import { FlatList, Image, ImageStyle, Platform, SectionList, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Drawer } from "react-native-drawer-layout"
 import { type ContentStyle } from "@shopify/flash-list"
 import { ListItem, ListView, ListViewRef, Screen, Text } from "../../components"
@@ -74,9 +74,9 @@ const ShowroomDemoList = (_props: any) => {
   const handleScroll = _props.handleScroll
   return (
     <View style={[$drawer, _props.additionalStyle ?? {}]}>
-      <View style={$logoContainer}>
+      {/* <View style={$logoContainer}>
         <Image source={logo} style={$logoImage} />
-      </View>
+      </View> */}
 
       <ListView<DemoListItem["item"]>
         ref={_props.menuRef}
@@ -134,6 +134,75 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
     const menuRef = useRef<ListViewRef<DemoListItem["item"]>>(null)
     const route = useRoute<RouteProp<DemoTabParamList, "DemoShowroom">>()
     const params = route.params
+    
+    const renderCard = ({ item }: { item: ReactElement }) => {
+      const { name, description } = item.props;
+
+      function handleCardPress(item: any): void {
+      }
+
+      return (
+        <TouchableOpacity
+        style={$cardContainer}
+        onPress={() => handleCardPress(item)}
+          >
+          <Text style={$cardTitle}>{name}</Text>
+          <Text style={$cardDescription}>{description}</Text>
+        </TouchableOpacity>
+      );
+    };
+
+    const renderSectionHeader = ({ section }) => (
+      <View style={$sectionHeaderContainer}>
+        <Text style={$sectionHeaderText}>{section.name}</Text>
+      </View>
+    )
+
+    const renderSection = ({ item: section }) => (
+      <View>
+        <View style={$sectionHeaderContainer}>
+          <Text style={$sectionHeaderText}>{section.name}</Text>
+          {/* <Text style={$sectionHeaderText}>{section.description}</Text> */}
+        </View>
+        <FlatList
+          data={section.data}
+          renderItem={renderCard}
+          keyExtractor={(_, index) => `${section.name}-card-${index}`}
+          numColumns={2}
+          contentContainerStyle={$gridContainer}
+        />
+      </View>
+    );
+
+    const renderFlatList = () => (
+
+
+      // <ListView<DemoListItem["item"]>
+      //   ref={_props.menuRef}
+      //   contentContainerStyle={$listContentContainer}
+      //   estimatedItemSize={spacing._250}
+      //   data={Object.values(Demos).map((d) => ({
+      //     name: d.name,
+      //     useCases: d.data.map((u) => u.props.name as string),
+      //   }))}
+      //   keyExtractor={(item) => item.name}
+      //   renderItem={({ item, index: sectionIndex }) => (
+      //     <ShowroomListItem {...{ item, sectionIndex, handleScroll }} />
+      //   )}
+      // />
+
+
+      <FlatList
+        data={Object.values(Demos).flatMap((section) => section.data)}
+        renderItem={renderCard}
+        keyExtractor={(_, index) => `card-${index}`}
+        numColumns={3}
+        ListHeaderComponent={() =>
+          Object.values(Demos).map((section) => renderSectionHeader({ section }))
+        }
+        contentContainerStyle={$gridContainer}
+      />
+    )
 
     // handle Web links
     React.useEffect(() => {
@@ -200,9 +269,15 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
     if (Platform.isTV) {
       return (
         <View style={$tvScreenContainer}>
-          <ShowroomDemoList menuRef={menuRef} handleScroll={handleScroll} />
+          {/* <ShowroomDemoList menuRef={menuRef} handleScroll={handleScroll} /> */}
           <View style={$tvMainContentContainer}>
-            <ShowroomDemos listRef={listRef} scrollToIndexFailed={scrollToIndexFailed} />
+          <FlatList
+          data={Object.values(Demos)}
+          renderItem={renderSection}
+          keyExtractor={(item) => item.name}
+          contentContainerStyle={$sectionListContainer}
+          />  
+          {/* <ShowroomDemos listRef={listRef} scrollToIndexFailed={scrollToIndexFailed} /> */}
           </View>
         </View>
       )
@@ -334,3 +409,43 @@ const $demoItemDescription: TextStyle = {
 const $demoUseCasesSpacer: ViewStyle = {
   paddingBottom: spacing.xxl,
 }
+
+const $gridContainer: ViewStyle = {
+  paddingHorizontal: spacing.lg,
+}
+
+const $sectionHeaderContainer: ViewStyle = {
+  paddingVertical: spacing.md,
+  backgroundColor: colors.background,
+}
+
+const $sectionHeaderText: TextStyle = {
+  fontSize: 18,
+  fontWeight: "bold",
+  color: colors.text,
+}
+
+const $cardContainer: ViewStyle = {
+  width: 280,
+  aspectRatio: 16 / 9,
+  margin: spacing.sm,
+  padding: spacing.sm,
+  backgroundColor: colors.palette.neutral100,
+  borderRadius: 8,
+}
+
+const $cardTitle: TextStyle = {
+  fontSize: 16,
+  fontWeight: "bold",
+  marginBottom: spacing.sm,
+  color: colors.text,
+}
+
+const $cardDescription: TextStyle = {
+  fontSize: 12,
+  color: colors.text,
+}
+
+const $sectionListContainer: ViewStyle = {
+  paddingBottom: spacing.xxl,
+};
