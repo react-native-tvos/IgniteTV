@@ -135,6 +135,14 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
     const route = useRoute<RouteProp<DemoTabParamList, "DemoShowroom">>()
     const params = route.params
     
+    const $drawerInsets = useSafeAreaInsetsStyle(["top"])
+
+    const demoValues = Object.values(Demos);
+    const midpoint = Math.ceil(demoValues.length / 2);
+
+    const firstHalf = demoValues.slice(0, midpoint);
+    const secondHalf = demoValues.slice(midpoint);
+    
     const [selectedSectionIndex, setSelectedSectionIndex] = useState<number | null>(null);
 
     const renderSection = ({ item: section }) => (
@@ -229,8 +237,6 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
       return () => timeout.current && clearTimeout(timeout.current)
     }, [])
 
-    const $drawerInsets = useSafeAreaInsetsStyle(["top"])
-
     if (Platform.isTV) {
       return (
         <View style={$tvScreenContainer}>
@@ -256,15 +262,26 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
               }}
             />
           ) : (
-            <FlatList
-              data={Object.values(Demos)}
-              renderItem={renderSection}
-              keyExtractor={(item) => item.name}
-              contentContainerStyle={$sectionListContainer}
-              numColumns={1}
-              horizontal
-              showsHorizontalScrollIndicator={false}
-            />
+            <View>
+                <FlatList
+                  data={firstHalf}
+                  renderItem={renderSection}
+                  keyExtractor={(item) => item.name}
+                  contentContainerStyle={$sectionListContainer}
+                  numColumns={1}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                />
+                <FlatList
+                  data={secondHalf}
+                  renderItem={renderSection}
+                  keyExtractor={(item) => item.name}
+                  contentContainerStyle={$sectionListContainer}
+                  numColumns={1}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                />
+            </View>
           )}
         </View>
       </View>
