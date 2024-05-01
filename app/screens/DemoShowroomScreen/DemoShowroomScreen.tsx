@@ -334,13 +334,14 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
 
 const $screenContainer: ViewStyle = {
   flex: 1,
+  backgroundColor: colors.palette.neutral200,
 }
 
 const $tvScreenContainer: ViewStyle = {
   flex: 1,
   flexDirection: "row",
   width: "100%",
-  margin: spacing.md,
+  backgroundColor: colors.palette.neutral200,
 }
 
 const $tvMainContentContainer: ViewStyle = {
@@ -403,7 +404,7 @@ const $cardContainer: ViewStyle = {
   aspectRatio: 16 / 9,
   margin: spacing.sm,
   padding: spacing.sm,
-  backgroundColor: colors.palette.neutral100,
+  backgroundColor: colors.palette.primary200,
   borderRadius: 8,
 }
 

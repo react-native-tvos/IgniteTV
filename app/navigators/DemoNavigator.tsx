@@ -76,7 +76,7 @@ export function DemoNavigator() {
           tabBarButton,
           tabBarLabel: translate("demoNavigator.componentsTab"),
           tabBarIcon: ({ focused }) => (
-            <Icon icon="components" color={focused ? colors.tint : undefined} size={iconSize} />
+            <Icon icon="components" color={focused ? colors.tint : colors.text} size={iconSize} />
           ),
         }}
       />
@@ -88,7 +88,7 @@ export function DemoNavigator() {
           tabBarButton,
           tabBarLabel: translate("demoNavigator.communityTab"),
           tabBarIcon: ({ focused }) => (
-            <Icon icon="community" color={focused ? colors.tint : undefined} size={iconSize} />
+            <Icon icon="community" color={focused ? colors.tint : colors.text} size={iconSize} />
           ),
         }}
       />
@@ -101,7 +101,7 @@ export function DemoNavigator() {
           tabBarButton,
           tabBarLabel: translate("demoNavigator.podcastListTab"),
           tabBarIcon: ({ focused }) => (
-            <Icon icon="podcast" color={focused ? colors.tint : undefined} size={iconSize} />
+            <Icon icon="podcast" color={focused ? colors.tint : colors.text} size={iconSize} />
           ),
         }}
       />
@@ -113,7 +113,7 @@ export function DemoNavigator() {
           tabBarLabel: translate("demoNavigator.debugTab"),
           tabBarButton,
           tabBarIcon: ({ focused }) => (
-            <Icon icon="debug" color={focused ? colors.tint : undefined} size={iconSize} />
+            <Icon icon="debug" color={focused ? colors.tint : colors.text} size={iconSize} />
           ),
         }}
       />
