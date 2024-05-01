@@ -97,6 +97,7 @@ const $welcomeFace: ImageStyle = {
   position: "absolute",
   bottom: -47,
   right: -80,
+  tintColor: colors.text,
   transform: [{ scaleX: isRTL ? -1 : 1 }],
 }
 
