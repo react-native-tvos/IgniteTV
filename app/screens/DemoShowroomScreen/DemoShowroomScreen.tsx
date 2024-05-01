@@ -1,6 +1,6 @@
 import { Link, RouteProp, useRoute } from "@react-navigation/native"
 import React, { FC, ReactElement, useEffect, useRef, useState } from "react"
-import { FlatList, Image, ImageStyle, Platform, SectionList, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
+import { BackHandler, FlatList, Image, ImageStyle, Platform, SectionList, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
 import { Drawer } from "react-native-drawer-layout"
 import { type ContentStyle } from "@shopify/flash-list"
 import { ListItem, ListView, ListViewRef, Screen, Text } from "../../components"
@@ -135,74 +135,39 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
     const route = useRoute<RouteProp<DemoTabParamList, "DemoShowroom">>()
     const params = route.params
     
-    const renderCard = ({ item }: { item: ReactElement }) => {
-      const { name, description } = item.props;
-
-      function handleCardPress(item: any): void {
-      }
-
-      return (
-        <TouchableOpacity
-        style={$cardContainer}
-        onPress={() => handleCardPress(item)}
-          >
-          <Text style={$cardTitle}>{name}</Text>
-          <Text style={$cardDescription}>{description}</Text>
-        </TouchableOpacity>
-      );
-    };
-
-    const renderSectionHeader = ({ section }) => (
-      <View style={$sectionHeaderContainer}>
-        <Text style={$sectionHeaderText}>{section.name}</Text>
-      </View>
-    )
+    const [selectedSectionIndex, setSelectedSectionIndex] = useState<number | null>(null);
 
     const renderSection = ({ item: section }) => (
-      <View>
-        <View style={$sectionHeaderContainer}>
-          <Text style={$sectionHeaderText}>{section.name}</Text>
-          {/* <Text style={$sectionHeaderText}>{section.description}</Text> */}
-        </View>
-        <FlatList
-          data={section.data}
-          renderItem={renderCard}
-          keyExtractor={(_, index) => `${section.name}-card-${index}`}
-          numColumns={2}
-          contentContainerStyle={$gridContainer}
-        />
-      </View>
+
+      <TouchableOpacity
+        style={$cardContainer}
+        onPress={() => setSelectedSectionIndex(Object.values(Demos).findIndex((d) => d.name === section.name))}
+      >
+        <Text style={$cardTitle}>{section.name}</Text>
+        <Text style={$cardDescription} ellipsizeMode="tail" numberOfLines={3}>{section.description}</Text>
+
+      </TouchableOpacity>
+        
     );
 
-    const renderFlatList = () => (
-
-
-      // <ListView<DemoListItem["item"]>
-      //   ref={_props.menuRef}
-      //   contentContainerStyle={$listContentContainer}
-      //   estimatedItemSize={spacing._250}
-      //   data={Object.values(Demos).map((d) => ({
-      //     name: d.name,
-      //     useCases: d.data.map((u) => u.props.name as string),
-      //   }))}
-      //   keyExtractor={(item) => item.name}
-      //   renderItem={({ item, index: sectionIndex }) => (
-      //     <ShowroomListItem {...{ item, sectionIndex, handleScroll }} />
-      //   )}
-      // />
-
-
-      <FlatList
-        data={Object.values(Demos).flatMap((section) => section.data)}
-        renderItem={renderCard}
-        keyExtractor={(_, index) => `card-${index}`}
-        numColumns={3}
-        ListHeaderComponent={() =>
-          Object.values(Demos).map((section) => renderSectionHeader({ section }))
-        }
-        contentContainerStyle={$gridContainer}
-      />
-    )
+    if (Platform.isTV) {
+      useEffect(() => {
+        const handleBackButton = () => {
+          if (selectedSectionIndex !== null) {
+            setSelectedSectionIndex(null);
+            return true;
+          }
+          return false;
+        };
+      
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+      
+        return () => {
+          backHandler.remove();
+          timeout.current && clearTimeout(timeout.current);
+        };
+      }, [selectedSectionIndex]);
+  }
 
     // handle Web links
     React.useEffect(() => {
@@ -269,17 +234,40 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
     if (Platform.isTV) {
       return (
         <View style={$tvScreenContainer}>
-          {/* <ShowroomDemoList menuRef={menuRef} handleScroll={handleScroll} /> */}
-          <View style={$tvMainContentContainer}>
-          <FlatList
-          data={Object.values(Demos)}
-          renderItem={renderSection}
-          keyExtractor={(item) => item.name}
-          contentContainerStyle={$sectionListContainer}
-          />  
-          {/* <ShowroomDemos listRef={listRef} scrollToIndexFailed={scrollToIndexFailed} /> */}
-          </View>
+        <View style={$tvMainContentContainer}>
+          {selectedSectionIndex !== null ? (
+            <SectionList
+              ref={listRef}
+              contentContainerStyle={$sectionListContentContainer}
+              stickySectionHeadersEnabled={false}
+              sections={[Object.values(Demos)[selectedSectionIndex]]}
+              renderItem={({ item }) => item}
+              renderSectionFooter={() => <View style={$demoUseCasesSpacer} />}
+              onScrollToIndexFailed={scrollToIndexFailed}
+              renderSectionHeader={({ section }) => {
+                return (
+                  <View>
+                    <Text preset="heading" style={$demoItemName}>
+                      {section.name}
+                    </Text>
+                    <Text style={$demoItemDescription}>{section.description}</Text>
+                  </View>
+                );
+              }}
+            />
+          ) : (
+            <FlatList
+              data={Object.values(Demos)}
+              renderItem={renderSection}
+              keyExtractor={(item) => item.name}
+              contentContainerStyle={$sectionListContainer}
+              numColumns={1}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            />
+          )}
         </View>
+      </View>
       )
     }
 
@@ -410,21 +398,6 @@ const $demoUseCasesSpacer: ViewStyle = {
   paddingBottom: spacing.xxl,
 }
 
-const $gridContainer: ViewStyle = {
-  paddingHorizontal: spacing.lg,
-}
-
-const $sectionHeaderContainer: ViewStyle = {
-  paddingVertical: spacing.md,
-  backgroundColor: colors.background,
-}
-
-const $sectionHeaderText: TextStyle = {
-  fontSize: 18,
-  fontWeight: "bold",
-  color: colors.text,
-}
-
 const $cardContainer: ViewStyle = {
   width: 280,
   aspectRatio: 16 / 9,
@@ -442,7 +415,9 @@ const $cardTitle: TextStyle = {
 }
 
 const $cardDescription: TextStyle = {
-  fontSize: 12,
+  fontSize: 8,
+  fontWeight: "normal",
+  marginBottom: spacing.sm,
   color: colors.text,
 }
 
