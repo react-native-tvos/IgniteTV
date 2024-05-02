@@ -3,7 +3,7 @@
 import { Platform } from "react-native"
 
 const palette = {
-  neutral100:  Platform.isTV ? '#000000' :"#FFFFFF",
+  neutral100:  Platform.isTV ? '#FFFFFF' :"#FFFFFF",
   neutral200:  Platform.isTV ? '#000000' :"#F4F2F1",
   neutral300:  Platform.isTV ? '#000000' :"#D7CEC9",
   neutral400:  Platform.isTV ? '#FFFFFF' :"#B6ACA6",
