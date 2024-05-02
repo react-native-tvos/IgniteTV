@@ -77,11 +77,12 @@
         "expo-build-properties",
         {
           "ios": {
-            "newArchEnabled": false,
-            "flipper": false
+            "newArchEnabled": true,
+            "flipper": false,
+            "deploymentTarget": "13.4"
           },
           "android": {
-            "newArchEnabled": false
+            "newArchEnabled": true
           }
         }
       ]
@@ -91,6 +92,6 @@
     }
   },
   "ignite": {
-    "version": "9.5.0"
+    "version": "9.6.3"
   }
 }
