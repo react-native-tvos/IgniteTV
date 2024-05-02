@@ -135,7 +135,7 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
     const menuRef = useRef<ListViewRef<DemoListItem["item"]>>(null)
     const route = useRoute<RouteProp<DemoTabParamList, "DemoShowroom">>()
     const params = route.params
-    
+
     const $drawerInsets = useSafeAreaInsetsStyle(["top"])
 
     const demoValues = Object.values(Demos);
@@ -143,65 +143,65 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
 
     const firstHalf = demoValues.slice(0, midpoint);
     const secondHalf = demoValues.slice(midpoint);
-    
+
     const [selectedSectionIndex, setSelectedSectionIndex] = useState<number | null>(null);
 
 
-const Card = ({ title, description, onPress }) => {
-  const scaleValue = useSharedValue(1);
-  const borderWidthValue = useSharedValue(0);
-  const borderColorValue = useSharedValue("blue");
+    const Card = ({ title, description, onPress }) => {
+      const scaleValue = useSharedValue(1);
+      const borderWidthValue = useSharedValue(0);
+      const borderColorValue = useSharedValue("blue");
 
-  const handleFocus = () => {
-    scaleValue.value = withSpring(1.1);
-    borderWidthValue.value = withTiming(2);
-    borderColorValue.value = withTiming("blue");
-  };
+      const handleFocus = () => {
+        scaleValue.value = withSpring(1.1);
+        borderWidthValue.value = withTiming(2);
+        borderColorValue.value = withTiming("blue");
+      };
 
-  const handleBlur = () => {
-    scaleValue.value = withSpring(1);
-    borderWidthValue.value = withTiming(0);
-    borderColorValue.value = withTiming("blue");
-  };
+      const handleBlur = () => {
+        scaleValue.value = withSpring(1);
+        borderWidthValue.value = withTiming(0);
+        borderColorValue.value = withTiming("blue");
+      };
 
-  const cardStyle = useAnimatedStyle(() => ({
-    width: 240,
-    aspectRatio: 16 / 9,
-    margin: spacing.sm,
-    padding: spacing.sm,
-    backgroundColor: colors.palette.primary200,
-    borderRadius: 8,
-    borderWidth: borderWidthValue.value,
-    borderColor: colors.palette.accent100,
-    transform: [{ scale: scaleValue.value }],
-    shadowOpacity: scaleValue.value === 1 ? 0 : 0.5,
-    shadowRadius: scaleValue.value === 1 ? 0 : 10,
-    shadowColor: '#FFFFFF',
-    elevation: scaleValue.value === 1 ? 0 : 1.1,
-  }));
+      const cardStyle = useAnimatedStyle(() => ({
+        width: 240,
+        aspectRatio: 16 / 9,
+        margin: spacing.sm,
+        padding: spacing.sm,
+        backgroundColor: colors.palette.primary200,
+        borderRadius: 8,
+        borderWidth: borderWidthValue.value,
+        borderColor: colors.palette.accent100,
+        transform: [{ scale: scaleValue.value }],
+        shadowOpacity: scaleValue.value === 1 ? 0 : 0.5,
+        shadowRadius: scaleValue.value === 1 ? 0 : 10,
+        shadowColor: '#FFFFFF',
+        elevation: scaleValue.value === 1 ? 0 : 1.1,
+      }));
 
-  return (
-    <View>
-      <TouchableWithoutFeedback onPress={onPress} onFocus={handleFocus} onBlur={handleBlur}>
+      return (
         <View>
-        <Animated.View style={[$cardStyle, cardStyle, $cardShadow]}>
-          <ImageBackground source={logo} resizeMode="center" style={$imageBackgroundCard} />
-        </Animated.View>
+          <TouchableWithoutFeedback onPress={onPress} onFocus={handleFocus} onBlur={handleBlur}>
+            <View>
+              <Animated.View style={[$cardStyle, cardStyle, $cardShadow]}>
+                <ImageBackground source={logo} resizeMode="center" style={$imageBackgroundCard} />
+              </Animated.View>
+            </View>
+          </TouchableWithoutFeedback>
+          <Text style={$cardTitle}>{title}</Text>
         </View>
-      </TouchableWithoutFeedback>
-      <Text style={$cardTitle}>{title}</Text>
-    </View>
-  );
-};
+      );
+    };
 
 
     const renderSection = ({ item: section }) => (
       <Card
-      title={section.name}
-      description={section.description}
-      onPress={() => setSelectedSectionIndex(Object.values(Demos).findIndex((d) => d.name === section.name))}
-     ></Card>
-        
+        title={section.name}
+        description={section.description}
+        onPress={() => setSelectedSectionIndex(Object.values(Demos).findIndex((d) => d.name === section.name))}
+      ></Card>
+
     );
 
     if (Platform.isTV) {
@@ -213,15 +213,15 @@ const Card = ({ title, description, onPress }) => {
           }
           return false;
         };
-      
+
         const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackButton);
-      
+
         return () => {
           backHandler.remove();
           timeout.current && clearTimeout(timeout.current);
         };
       }, [selectedSectionIndex]);
-  }
+    }
 
     // handle Web links
     React.useEffect(() => {
@@ -286,29 +286,29 @@ const Card = ({ title, description, onPress }) => {
     if (Platform.isTV) {
       return (
         <View style={$tvScreenContainer}>
-        <View style={$tvMainContentContainer}>
-          {selectedSectionIndex !== null ? (
-            <SectionList
-              ref={listRef}
-              contentContainerStyle={$sectionListContentContainer}
-              stickySectionHeadersEnabled={false}
-              sections={[Object.values(Demos)[selectedSectionIndex]]}
-              renderItem={({ item }) => item}
-              renderSectionFooter={() => <View style={$demoUseCasesSpacer} />}
-              onScrollToIndexFailed={scrollToIndexFailed}
-              renderSectionHeader={({ section }) => {
-                return (
-                  <View>
-                    <Text preset="heading" style={$demoItemName}>
-                      {section.name}
-                    </Text>
-                    <Text style={$demoItemDescription}>{section.description}</Text>
-                  </View>
-                );
-              }}
-            />
-          ) : (
-            <View>
+          <View style={$tvMainContentContainer}>
+            {selectedSectionIndex !== null ? (
+              <SectionList
+                ref={listRef}
+                contentContainerStyle={$sectionListContentContainer}
+                stickySectionHeadersEnabled={false}
+                sections={[Object.values(Demos)[selectedSectionIndex]]}
+                renderItem={({ item }) => item}
+                renderSectionFooter={() => <View style={$demoUseCasesSpacer} />}
+                onScrollToIndexFailed={scrollToIndexFailed}
+                renderSectionHeader={({ section }) => {
+                  return (
+                    <View>
+                      <Text preset="heading" style={$demoItemName}>
+                        {section.name}
+                      </Text>
+                      <Text style={$demoItemDescription}>{section.description}</Text>
+                    </View>
+                  );
+                }}
+              />
+            ) : (
+              <View>
                 <FlatList
                   data={firstHalf}
                   renderItem={renderSection}
@@ -327,10 +327,10 @@ const Card = ({ title, description, onPress }) => {
                   horizontal
                   showsHorizontalScrollIndicator={false}
                 />
-            </View>
-          )}
+              </View>
+            )}
+          </View>
         </View>
-      </View>
       )
     }
 
@@ -475,19 +475,19 @@ const $sectionListContainer: ViewStyle = {
 };
 
 const $cardStyle: ViewStyle = {
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    padding: 16,
-  };
+  backgroundColor: '#fff',
+  borderRadius: 8,
+  padding: 16,
+};
 
 
 const $cardShadow: ViewStyle = {
 
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-  
+  shadowOffset: {
+    width: 0,
+    height: 0,
+  },
+
 }
 
 const $imageBackgroundCard: ViewStyle = {
