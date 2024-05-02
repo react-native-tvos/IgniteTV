@@ -318,6 +318,7 @@ const $heading: ViewStyle = {
 const $item: ViewStyle = {
   padding: spacing.md,
   marginTop: spacing.md,
+  backgroundColor: colors.palette.primary200,
   minHeight: 120,
 }
 

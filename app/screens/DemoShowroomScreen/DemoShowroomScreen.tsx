@@ -1,6 +1,6 @@
 import { Link, RouteProp, useRoute } from "@react-navigation/native"
 import React, { FC, ReactElement, useEffect, useRef, useState } from "react"
-import { BackHandler, FlatList, Image, ImageStyle, Platform, Pressable, SectionList, TextStyle, TouchableWithoutFeedback, View, ViewStyle } from "react-native"
+import { BackHandler, FlatList, Image, ImageBackground, ImageStyle, Platform, SectionList, TextStyle, TouchableWithoutFeedback, View, ViewStyle } from "react-native"
 import { Drawer } from "react-native-drawer-layout"
 import { type ContentStyle } from "@shopify/flash-list"
 import { ListItem, ListView, ListViewRef, Screen, Text } from "../../components"
@@ -181,24 +181,21 @@ const Card = ({ title, description, onPress }) => {
   }));
 
   return (
-    <TouchableWithoutFeedback onPress={onPress} onFocus={handleFocus} onBlur={handleBlur}>
-      <View>
-      <Animated.View style={[$cardStyle, cardStyle, $cardShadow]}>
-      <View style={$cardContent}>
-        <Text style={$cardTitle}>{title}</Text>
-        <Text style={$cardDescription} ellipsizeMode="clip" numberOfLines={3}>
-          {description}
-        </Text>
-      </View>
-      </Animated.View>
-      </View>
-    </TouchableWithoutFeedback>
+    <View>
+      <TouchableWithoutFeedback onPress={onPress} onFocus={handleFocus} onBlur={handleBlur}>
+        <View>
+        <Animated.View style={[$cardStyle, cardStyle, $cardShadow]}>
+          <ImageBackground source={logo} resizeMode="center" style={$imageBackgroundCard} />
+        </Animated.View>
+        </View>
+      </TouchableWithoutFeedback>
+      <Text style={$cardTitle}>{title}</Text>
+    </View>
   );
 };
 
 
     const renderSection = ({ item: section }) => (
-
       <Card
       title={section.name}
       description={section.description}
@@ -465,26 +462,11 @@ const $demoUseCasesSpacer: ViewStyle = {
   paddingBottom: spacing.xxl,
 }
 
-const $cardContainer: ViewStyle = {
-  width: 280,
-  aspectRatio: 16 / 9,
-  margin: spacing.sm,
-  padding: spacing.sm,
-  backgroundColor: colors.palette.primary200,
-  borderRadius: 8,
-}
-
 const $cardTitle: TextStyle = {
   fontSize: 16,
   fontWeight: "bold",
+  marginStart: 16,
   marginBottom: spacing.sm,
-  color: colors.text,
-}
-
-const $cardDescription: TextStyle = {
-  fontSize: 8,
-  width: 200,
-  fontWeight: "normal",
   color: colors.text,
 }
 
@@ -498,9 +480,6 @@ const $cardStyle: ViewStyle = {
     padding: 16,
   };
 
-  const $cardContent: ViewStyle = {
-    flex: 1,
-  };
 
 const $cardShadow: ViewStyle = {
 
@@ -509,4 +488,8 @@ const $cardShadow: ViewStyle = {
       height: 0,
     },
   
+}
+
+const $imageBackgroundCard: ViewStyle = {
+  flex: 1,
 }

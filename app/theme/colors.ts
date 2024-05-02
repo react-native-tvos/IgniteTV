@@ -6,12 +6,12 @@ const palette = {
   neutral100:  Platform.isTV ? '#FFFFFF' :"#FFFFFF",
   neutral200:  Platform.isTV ? '#000000' :"#F4F2F1",
   neutral300:  Platform.isTV ? '#000000' :"#D7CEC9",
-  neutral400:  Platform.isTV ? '#FFFFFF' :"#B6ACA6",
-  neutral500:  Platform.isTV ? '#FFFFFF' :"#978F8A",
-  neutral600:  Platform.isTV ? '#FFFFFF' :"#564E4A",
+  neutral400:  Platform.isTV ? '#000000' :"#B6ACA6",
+  neutral500:  Platform.isTV ? '#000000' :"#978F8A",
+  neutral600:  Platform.isTV ? '#000000' :"#564E4A",
   neutral700:  Platform.isTV ? '#FFFFFF' :"#3C3836",
   neutral800:  Platform.isTV ? '#FFFFFF' :"#191015",
-  neutral900:  Platform.isTV ? '#FFFFFF' :"#000000",
+  neutral900:  Platform.isTV ? '#000000' :"#000000",
 
   primary100: Platform.isTV ? '#382bf0' : '#F4E0D9',
   primary200: Platform.isTV ? "#5e43f3" : "#E8C1B4",
@@ -53,7 +53,7 @@ export const colors = {
   /**
    * The default text color in many components.
    */
-  text: palette.neutral800,
+  text: palette.neutral700,
   /**
    * Secondary text information.
    */

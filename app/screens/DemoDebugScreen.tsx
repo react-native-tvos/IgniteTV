@@ -140,6 +140,7 @@ const $itemsContainer: ViewStyle = {
 
 const $button: ViewStyle = {
   marginBottom: spacing.xs,
+  backgroundColor: Platform.isTV ? colors.palette.primary300 : colors.palette.primary100
 }
 
 const $buttonContainer: ViewStyle = {
@@ -147,7 +148,7 @@ const $buttonContainer: ViewStyle = {
 }
 
 const $hint: TextStyle = {
-  color: colors.palette.neutral600,
+  color:  Platform.isTV ? colors.palette.neutral700 : colors.palette.neutral600,
   fontSize: 12,
   lineHeight: 15,
   paddingBottom: spacing.lg,
