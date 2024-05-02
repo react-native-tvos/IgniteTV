@@ -71,60 +71,6 @@ const NativeListItem: FC<DemoListItem> = ({ item, sectionIndex, handleScroll }) 
   </View>
 )
 
-const ShowroomDemoList = (_props: any) => {
-  const handleScroll = _props.handleScroll
-  return (
-    <View style={[$drawer, _props.additionalStyle ?? {}]}>
-      {/* <View style={$logoContainer}>
-        <Image source={logo} style={$logoImage} />
-      </View> */}
-
-      <ListView<DemoListItem["item"]>
-        ref={_props.menuRef}
-        contentContainerStyle={$listContentContainer}
-        estimatedItemSize={spacing._250}
-        data={Object.values(Demos).map((d) => ({
-          name: d.name,
-          useCases: d.data.map((u) => u.props.name as string),
-        }))}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item, index: sectionIndex }) => (
-          <ShowroomListItem {...{ item, sectionIndex, handleScroll }} />
-        )}
-      />
-    </View>
-  )
-}
-
-const ShowroomDemos = (_props: any) => {
-  return (
-    <SectionList
-      ref={_props.listRef}
-      contentContainerStyle={$sectionListContentContainer}
-      stickySectionHeadersEnabled={false}
-      sections={Object.values(Demos)}
-      renderItem={({ item }) => item}
-      renderSectionFooter={() => <View style={$demoUseCasesSpacer} />}
-      ListHeaderComponent={
-        <View style={$heading}>
-          <Text preset="heading" tx="demoShowroomScreen.jumpStart" />
-        </View>
-      }
-      onScrollToIndexFailed={_props.scrollToIndexFailed}
-      renderSectionHeader={({ section }) => {
-        return (
-          <View>
-            <Text preset="heading" style={$demoItemName}>
-              {section.name}
-            </Text>
-            <Text style={$demoItemDescription}>{section.description}</Text>
-          </View>
-        )
-      }}
-    />
-  )
-}
-
 const ShowroomListItem = Platform.select({ web: WebListItem, default: NativeListItem })
 
 export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
