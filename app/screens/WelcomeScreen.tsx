@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite"
 import React, { FC } from "react"
-import { Image, ImageStyle, TextStyle, View, ViewStyle } from "react-native"
+import { Image, ImageStyle, Platform, TextStyle, View, ViewStyle } from "react-native"
 import { Button, Text } from "app/components"
 import { isRTL } from "../i18n"
 import { useStores } from "../models"
@@ -49,12 +49,13 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
       </View>
 
       <View style={[$bottomContainer, $bottomContainerInsets]}>
-        <Text tx="welcomeScreen.postscript" size="md" />
+        <Text tx="welcomeScreen.postscript" size="md" style={$welcomeScreenBottomText}/>
 
         <Button
           testID="next-screen-button"
           preset="reversed"
           tx="welcomeScreen.letsGo"
+          style={$welcomeScreenBottomButton}
           onPress={goNext}
         />
       </View>
@@ -103,4 +104,12 @@ const $welcomeFace: ImageStyle = {
 
 const $welcomeHeading: TextStyle = {
   marginBottom: spacing.md,
+}
+
+const $welcomeScreenBottomText: TextStyle = {
+  color: Platform.isTV ? colors.palette.neutral200 : colors.palette.neutral100
+}
+
+const $welcomeScreenBottomButton: ViewStyle = {
+  backgroundColor: Platform.isTV ? colors.palette.primary300 : colors.palette.neutral100
 }
