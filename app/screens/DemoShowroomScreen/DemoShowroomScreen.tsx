@@ -1,6 +1,6 @@
 import { Link, RouteProp, useRoute } from "@react-navigation/native"
 import React, { FC, ReactElement, useEffect, useRef, useState } from "react"
-import { BackHandler, FlatList, Image, ImageStyle, Platform, SectionList, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
+import { BackHandler, FlatList, Image, ImageStyle, Platform, Pressable, SectionList, TextStyle, TouchableWithoutFeedback, View, ViewStyle } from "react-native"
 import { Drawer } from "react-native-drawer-layout"
 import { type ContentStyle } from "@shopify/flash-list"
 import { ListItem, ListView, ListViewRef, Screen, Text } from "../../components"
@@ -10,6 +10,7 @@ import { colors, spacing } from "../../theme"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import * as Demos from "./demos"
 import { DrawerIconButton } from "./DrawerIconButton"
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSpring } from 'react-native-reanimated';
 
 const logo = require("../../../assets/images/logo.png")
 
@@ -145,16 +146,64 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
     
     const [selectedSectionIndex, setSelectedSectionIndex] = useState<number | null>(null);
 
+
+const Card = ({ title, description, onPress }) => {
+  const scaleValue = useSharedValue(1);
+  const borderWidthValue = useSharedValue(0);
+  const borderColorValue = useSharedValue("blue");
+
+  const handleFocus = () => {
+    scaleValue.value = withSpring(1.1);
+    borderWidthValue.value = withTiming(2);
+    borderColorValue.value = withTiming("blue");
+  };
+
+  const handleBlur = () => {
+    scaleValue.value = withSpring(1);
+    borderWidthValue.value = withTiming(0);
+    borderColorValue.value = withTiming("blue");
+  };
+
+  const cardStyle = useAnimatedStyle(() => ({
+    width: 240,
+    aspectRatio: 16 / 9,
+    margin: spacing.sm,
+    padding: spacing.sm,
+    backgroundColor: colors.palette.primary200,
+    borderRadius: 8,
+    borderWidth: borderWidthValue.value,
+    borderColor: colors.palette.accent100,
+    transform: [{ scale: scaleValue.value }],
+    shadowOpacity: scaleValue.value === 1 ? 0 : 0.5,
+    shadowRadius: scaleValue.value === 1 ? 0 : 10,
+    shadowColor: '#FFFFFF',
+    elevation: scaleValue.value === 1 ? 0 : 1.1,
+  }));
+
+  return (
+    <TouchableWithoutFeedback onPress={onPress} onFocus={handleFocus} onBlur={handleBlur}>
+      <View>
+      <Animated.View style={[$cardStyle, cardStyle, $cardShadow]}>
+      <View style={$cardContent}>
+        <Text style={$cardTitle}>{title}</Text>
+        <Text style={$cardDescription} ellipsizeMode="clip" numberOfLines={3}>
+          {description}
+        </Text>
+      </View>
+      </Animated.View>
+      </View>
+    </TouchableWithoutFeedback>
+  );
+};
+
+
     const renderSection = ({ item: section }) => (
 
-      <TouchableOpacity
-        style={$cardContainer}
-        onPress={() => setSelectedSectionIndex(Object.values(Demos).findIndex((d) => d.name === section.name))}
-      >
-        <Text style={$cardTitle}>{section.name}</Text>
-        <Text style={$cardDescription} ellipsizeMode="tail" numberOfLines={3}>{section.description}</Text>
-
-      </TouchableOpacity>
+      <Card
+      title={section.name}
+      description={section.description}
+      onPress={() => setSelectedSectionIndex(Object.values(Demos).findIndex((d) => d.name === section.name))}
+     ></Card>
         
     );
 
@@ -434,11 +483,30 @@ const $cardTitle: TextStyle = {
 
 const $cardDescription: TextStyle = {
   fontSize: 8,
+  width: 200,
   fontWeight: "normal",
-  marginBottom: spacing.sm,
   color: colors.text,
 }
 
 const $sectionListContainer: ViewStyle = {
   paddingBottom: spacing.xxl,
 };
+
+const $cardStyle: ViewStyle = {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 16,
+  };
+
+  const $cardContent: ViewStyle = {
+    flex: 1,
+  };
+
+const $cardShadow: ViewStyle = {
+
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+  
+}
