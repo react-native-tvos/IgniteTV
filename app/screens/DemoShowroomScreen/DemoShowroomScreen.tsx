@@ -1,8 +1,8 @@
 import { Link, RouteProp, useRoute } from "@react-navigation/native"
 import React, { FC, ReactElement, useEffect, useRef, useState } from "react"
-import { BackHandler, FlatList, Image, ImageBackground, ImageStyle, Platform, SectionList, TextStyle, TouchableWithoutFeedback, View, ViewStyle } from "react-native"
+import { BackHandler, Image, ImageBackground, ImageStyle, Platform, SectionList, TextStyle, TouchableWithoutFeedback, View, ViewStyle } from "react-native"
 import { Drawer } from "react-native-drawer-layout"
-import { type ContentStyle } from "@shopify/flash-list"
+import { FlashList, type ContentStyle } from "@shopify/flash-list"
 import { ListItem, ListView, ListViewRef, Screen, Text } from "../../components"
 import { isRTL } from "../../i18n"
 import { DemoTabParamList, DemoTabScreenProps } from "../../navigators/DemoNavigator"
@@ -255,24 +255,26 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
               />
             ) : (
               <View>
-                <FlatList
-                  data={firstHalf}
-                  renderItem={renderSection}
-                  keyExtractor={(item) => item.name}
-                  contentContainerStyle={$sectionListContainer}
-                  numColumns={1}
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                />
-                <FlatList
-                  data={secondHalf}
-                  renderItem={renderSection}
-                  keyExtractor={(item) => item.name}
-                  contentContainerStyle={$sectionListContainer}
-                  numColumns={1}
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                />
+                  <FlashList
+                    data={firstHalf}
+                    renderItem={renderSection}
+                    keyExtractor={(item) => item.name}
+                    contentContainerStyle={$sectionListContainer}
+                    numColumns={1}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    estimatedItemSize={240}
+                  />
+                  <FlashList
+                    data={secondHalf}
+                    renderItem={renderSection}
+                    keyExtractor={(item) => item.name}
+                    contentContainerStyle={$sectionListContainer}
+                    numColumns={1}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    estimatedItemSize={240}
+                  />
               </View>
             )}
           </View>
