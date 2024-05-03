@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite"
 import React, { ComponentType, FC, useEffect, useMemo, useRef, useState } from "react"
-import { Platform, TextInput, TextStyle, TVFocusGuideView, ViewStyle } from "react-native"
+import { TextInput, TextStyle, TVFocusGuideView, ViewStyle } from "react-native"
 import { Button, Icon, Screen, Text, TextField, TextFieldAccessoryProps } from "../components"
 import { useStores } from "../models"
 import { AppStackScreenProps } from "../navigators"
@@ -142,5 +142,4 @@ const $textField: ViewStyle = {
 
 const $tapButton: ViewStyle = {
   marginTop: spacing.xs,
-  backgroundColor: Platform.isTV ? colors.palette.primary300 : colors.palette.neutral100
 }

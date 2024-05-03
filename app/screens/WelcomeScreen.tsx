@@ -49,13 +49,12 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
       </View>
 
       <View style={[$bottomContainer, $bottomContainerInsets]}>
-        <Text tx="welcomeScreen.postscript" size="md" style={$welcomeScreenBottomText}/>
+        <Text tx="welcomeScreen.postscript" size="md" />
 
         <Button
           testID="next-screen-button"
           preset="reversed"
           tx="welcomeScreen.letsGo"
-          style={$welcomeScreenBottomButton}
           onPress={goNext}
         />
       </View>
@@ -98,18 +97,9 @@ const $welcomeFace: ImageStyle = {
   position: "absolute",
   bottom: -47,
   right: -80,
-  tintColor: colors.text,
   transform: [{ scaleX: isRTL ? -1 : 1 }],
 }
 
 const $welcomeHeading: TextStyle = {
   marginBottom: spacing.md,
-}
-
-const $welcomeScreenBottomText: TextStyle = {
-  color: Platform.isTV ? colors.palette.neutral200 : colors.palette.neutral100
-}
-
-const $welcomeScreenBottomButton: ViewStyle = {
-  backgroundColor: Platform.isTV ? colors.palette.primary300 : colors.palette.neutral100
 }
