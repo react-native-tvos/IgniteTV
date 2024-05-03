@@ -71,7 +71,7 @@ function App(props: AppProps) {
     isRestored: isNavigationStateRestored,
   } = useNavigationPersistence(storage, NAVIGATION_PERSISTENCE_KEY)
 
-  const [areFontsLoaded] = useFonts(customFontsToLoad)
+  const [areFontsLoaded, didFontLoadError] = useFonts(customFontsToLoad)
 
   const { rehydrated } = useInitialRootStore(() => {
     // This runs after the root store has been initialized and rehydrated.
@@ -89,7 +89,9 @@ function App(props: AppProps) {
   // In iOS: application:didFinishLaunchingWithOptions:
   // In Android: https://stackoverflow.com/a/45838109/204044
   // You can replace with your own loading component if you wish.
-  if (!rehydrated || !isNavigationStateRestored || !areFontsLoaded) return null
+  // (If fonts fail to load, we show the app anyway)
+  if (!rehydrated || !isNavigationStateRestored || (!areFontsLoaded && !didFontLoadError))
+    return null
 
   const linking = {
     prefixes: [prefix],
@@ -99,7 +101,7 @@ function App(props: AppProps) {
   // otherwise, we're ready to render the app
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <ErrorBoundary catchErrors={Config.catchErrors}>
+      <ErrorBoundary catchErrors={Config.catchErrors} previousError={didFontLoadError ?? undefined}>
         <GestureHandlerRootView style={$container}>
           <AppNavigator
             linking={linking}
