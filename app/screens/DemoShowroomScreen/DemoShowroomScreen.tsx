@@ -146,8 +146,13 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
         <View>
           <Pressable onPress={onPress} onFocus={handleFocus} onBlur={handleBlur}>
             <View>
-              <Animated.View style={[$cardStyle, cardStyle, $cardShadow]}>
-                <ImageBackground source={logo} resizeMode="center" style={$imageBackgroundCard} />
+              <Animated.View style={[cardStyle, $cardShadow]}>
+                <ImageBackground
+                  source={logo}
+                  imageStyle={$cardLogoImage}
+                  resizeMode="center"
+                  style={$imageBackgroundCard}
+                />
               </Animated.View>
             </View>
           </Pressable>
@@ -456,7 +461,7 @@ const $cardStyle: ViewStyle = {
   aspectRatio: 16 / 9,
   margin: spacing.sm,
   padding: spacing.sm,
-  backgroundColor: colors.palette.primary200,
+  backgroundColor: colors.palette.neutral300,
   borderRadius: 8,
   borderColor: colors.palette.accent100,
   shadowColor: "#FFFFFF",
@@ -471,4 +476,10 @@ const $cardShadow: ViewStyle = {
 
 const $imageBackgroundCard: ViewStyle = {
   flex: 1,
+  backgroundColor: colors.palette.neutral300,
+}
+
+const $cardLogoImage: ViewStyle = {
+  width: $cardWidth * 0.9,
+  height: $cardWidth * 0.5,
 }
