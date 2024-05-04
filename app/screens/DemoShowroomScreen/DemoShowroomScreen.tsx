@@ -108,7 +108,15 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
 
     const [selectedSectionIndex, setSelectedSectionIndex] = useState<number | null>(null)
 
-    const Card = ({ title, description, onPress }) => {
+    const Card = ({
+      title,
+      description,
+      onPress,
+    }: {
+      title: string
+      description?: string
+      onPress: () => void
+    }) => {
       const scaleValue = useSharedValue(1)
       const borderWidthValue = useSharedValue(0)
       const borderColorValue = useSharedValue("blue")
@@ -130,6 +138,7 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
         aspectRatio: 16 / 9,
         margin: spacing.sm,
         padding: spacing.sm,
+        flexWrap: "wrap",
         backgroundColor: colors.palette.primary200,
         borderRadius: 8,
         borderWidth: borderWidthValue.value,
@@ -151,11 +160,12 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
             </View>
           </Pressable>
           <Text style={$cardTitle}>{title}</Text>
+          <Text style={$cardDescription}>{description ?? ""}</Text>
         </View>
       )
     }
 
-    const renderSection = ({ item: section }) => (
+    const renderSection = ({ item: section }: { item: { name: string; description: string } }) => (
       <Card
         title={section.name}
         description={section.description}
@@ -430,6 +440,16 @@ const $cardTitle: TextStyle = {
   fontWeight: "bold",
   marginStart: 16,
   marginBottom: spacing.sm,
+  color: colors.text,
+}
+
+const $cardDescription: TextStyle = {
+  fontSize: 8,
+  fontWeight: "bold",
+  marginStart: 24,
+  marginBottom: spacing.sm,
+  width: 240,
+  lineHeight: 10,
   color: colors.text,
 }
 
