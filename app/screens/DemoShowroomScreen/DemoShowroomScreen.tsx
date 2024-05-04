@@ -1,6 +1,17 @@
 import { Link, RouteProp, useRoute } from "@react-navigation/native"
 import React, { FC, ReactElement, useEffect, useRef, useState } from "react"
-import { BackHandler, Image, ImageBackground, ImageStyle, Platform, SectionList, TextStyle, TouchableWithoutFeedback, View, ViewStyle } from "react-native"
+import {
+  BackHandler,
+  Image,
+  ImageBackground,
+  ImageStyle,
+  Platform,
+  SectionList,
+  TextStyle,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle,
+} from "react-native"
 import { Drawer } from "react-native-drawer-layout"
 import { FlashList, type ContentStyle } from "@shopify/flash-list"
 import { ListItem, ListView, ListViewRef, Screen, Text } from "../../components"
@@ -10,7 +21,12 @@ import { colors, spacing } from "../../theme"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import * as Demos from "./demos"
 import { DrawerIconButton } from "./DrawerIconButton"
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSpring } from 'react-native-reanimated';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withSpring,
+} from "react-native-reanimated"
 
 const logo = require("../../../assets/images/logo.png")
 
@@ -84,31 +100,30 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
 
     const $drawerInsets = useSafeAreaInsetsStyle(["top"])
 
-    const demoValues = Object.values(Demos);
-    const midpoint = Math.ceil(demoValues.length / 2);
+    const demoValues = Object.values(Demos)
+    const midpoint = Math.ceil(demoValues.length / 2)
 
-    const firstHalf = demoValues.slice(0, midpoint);
-    const secondHalf = demoValues.slice(midpoint);
+    const firstHalf = demoValues.slice(0, midpoint)
+    const secondHalf = demoValues.slice(midpoint)
 
-    const [selectedSectionIndex, setSelectedSectionIndex] = useState<number | null>(null);
-
+    const [selectedSectionIndex, setSelectedSectionIndex] = useState<number | null>(null)
 
     const Card = ({ title, description, onPress }) => {
-      const scaleValue = useSharedValue(1);
-      const borderWidthValue = useSharedValue(0);
-      const borderColorValue = useSharedValue("blue");
+      const scaleValue = useSharedValue(1)
+      const borderWidthValue = useSharedValue(0)
+      const borderColorValue = useSharedValue("blue")
 
       const handleFocus = () => {
-        scaleValue.value = withSpring(1.1);
-        borderWidthValue.value = withTiming(2);
-        borderColorValue.value = withTiming("blue");
-      };
+        scaleValue.value = withSpring(1.1)
+        borderWidthValue.value = withTiming(2)
+        borderColorValue.value = withTiming("blue")
+      }
 
       const handleBlur = () => {
-        scaleValue.value = withSpring(1);
-        borderWidthValue.value = withTiming(0);
-        borderColorValue.value = withTiming("blue");
-      };
+        scaleValue.value = withSpring(1)
+        borderWidthValue.value = withTiming(0)
+        borderColorValue.value = withTiming("blue")
+      }
 
       const cardStyle = useAnimatedStyle(() => ({
         width: 240,
@@ -122,9 +137,9 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
         transform: [{ scale: scaleValue.value }],
         shadowOpacity: scaleValue.value === 1 ? 0 : 0.5,
         shadowRadius: scaleValue.value === 1 ? 0 : 10,
-        shadowColor: '#FFFFFF',
+        shadowColor: "#FFFFFF",
         elevation: scaleValue.value === 1 ? 0 : 1.1,
-      }));
+      }))
 
       return (
         <View>
@@ -137,36 +152,36 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
           </TouchableWithoutFeedback>
           <Text style={$cardTitle}>{title}</Text>
         </View>
-      );
-    };
-
+      )
+    }
 
     const renderSection = ({ item: section }) => (
       <Card
         title={section.name}
         description={section.description}
-        onPress={() => setSelectedSectionIndex(Object.values(Demos).findIndex((d) => d.name === section.name))}
+        onPress={() =>
+          setSelectedSectionIndex(Object.values(Demos).findIndex((d) => d.name === section.name))
+        }
       ></Card>
-
-    );
+    )
 
     if (Platform.isTV) {
       useEffect(() => {
         const handleBackButton = () => {
           if (selectedSectionIndex !== null) {
-            setSelectedSectionIndex(null);
-            return true;
+            setSelectedSectionIndex(null)
+            return true
           }
-          return false;
-        };
+          return false
+        }
 
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+        const backHandler = BackHandler.addEventListener("hardwareBackPress", handleBackButton)
 
         return () => {
-          backHandler.remove();
-          timeout.current && clearTimeout(timeout.current);
-        };
-      }, [selectedSectionIndex]);
+          backHandler.remove()
+          timeout.current && clearTimeout(timeout.current)
+        }
+      }, [selectedSectionIndex])
     }
 
     // handle Web links
@@ -250,31 +265,31 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
                       </Text>
                       <Text style={$demoItemDescription}>{section.description}</Text>
                     </View>
-                  );
+                  )
                 }}
               />
             ) : (
               <View>
-                  <FlashList
-                    data={firstHalf}
-                    renderItem={renderSection}
-                    keyExtractor={(item) => item.name}
-                    contentContainerStyle={$sectionListContainer}
-                    numColumns={1}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    estimatedItemSize={240}
-                  />
-                  <FlashList
-                    data={secondHalf}
-                    renderItem={renderSection}
-                    keyExtractor={(item) => item.name}
-                    contentContainerStyle={$sectionListContainer}
-                    numColumns={1}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    estimatedItemSize={240}
-                  />
+                <FlashList
+                  data={firstHalf}
+                  renderItem={renderSection}
+                  keyExtractor={(item) => item.name}
+                  contentContainerStyle={$sectionListContainer}
+                  numColumns={1}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  estimatedItemSize={240}
+                />
+                <FlashList
+                  data={secondHalf}
+                  renderItem={renderSection}
+                  keyExtractor={(item) => item.name}
+                  contentContainerStyle={$sectionListContainer}
+                  numColumns={1}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  estimatedItemSize={240}
+                />
               </View>
             )}
           </View>
@@ -420,22 +435,19 @@ const $cardTitle: TextStyle = {
 
 const $sectionListContainer: ViewStyle = {
   paddingBottom: spacing.xxl,
-};
+}
 
 const $cardStyle: ViewStyle = {
-  backgroundColor: '#fff',
+  backgroundColor: "#fff",
   borderRadius: 8,
   padding: 16,
-};
-
+}
 
 const $cardShadow: ViewStyle = {
-
   shadowOffset: {
     width: 0,
     height: 0,
   },
-
 }
 
 const $imageBackgroundCard: ViewStyle = {

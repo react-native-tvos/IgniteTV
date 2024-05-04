@@ -61,7 +61,7 @@ export function DemoNavigator() {
     height: tabBarHeight,
     ...(Platform.isTV && {
       paddingHorizontal: spacing.xl,
-      width: "100%", 
+      width: "100%",
       alignSelf: "center",
     }),
   }

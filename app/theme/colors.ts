@@ -3,17 +3,17 @@
 import { Platform } from "react-native"
 
 const palette = {
-  neutral100:  Platform.isTV ? '#121212' :"#FFFFFF",
-  neutral200:  Platform.isTV ? '#282828' :"#F4F2F1",
-  neutral300:  Platform.isTV ? '#3f3f3f' :"#D7CEC9",
-  neutral400:  Platform.isTV ? '#575757' :"#B6ACA6",
-  neutral500:  Platform.isTV ? '#717171' :"#978F8A",
-  neutral600:  Platform.isTV ? '#8b8b8b' :"#564E4A",
-  neutral700:  Platform.isTV ? '#D7CEC9' :"#3C3836",
-  neutral800:  Platform.isTV ? '#F4F2F1' :"#191015",
-  neutral900:  Platform.isTV ? '#FFFFFF' :"#000000",
+  neutral100: Platform.isTV ? "#121212" : "#FFFFFF",
+  neutral200: Platform.isTV ? "#282828" : "#F4F2F1",
+  neutral300: Platform.isTV ? "#3f3f3f" : "#D7CEC9",
+  neutral400: Platform.isTV ? "#575757" : "#B6ACA6",
+  neutral500: Platform.isTV ? "#717171" : "#978F8A",
+  neutral600: Platform.isTV ? "#8b8b8b" : "#564E4A",
+  neutral700: Platform.isTV ? "#D7CEC9" : "#3C3836",
+  neutral800: Platform.isTV ? "#F4F2F1" : "#191015",
+  neutral900: Platform.isTV ? "#FFFFFF" : "#000000",
 
-  primary100: Platform.isTV ? '#382bf0' : '#F4E0D9',
+  primary100: Platform.isTV ? "#382bf0" : "#F4E0D9",
   primary200: Platform.isTV ? "#5e43f3" : "#E8C1B4",
   primary300: Platform.isTV ? "#7a5af5" : "#DDA28E",
   primary400: Platform.isTV ? "#9171f8" : "#D28468",
