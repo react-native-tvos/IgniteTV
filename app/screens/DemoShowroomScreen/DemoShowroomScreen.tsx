@@ -13,7 +13,7 @@ import {
   ViewStyle,
 } from "react-native"
 import { Drawer } from "react-native-drawer-layout"
-import { FlashList, type ContentStyle } from "@shopify/flash-list"
+import { FlashList, ContentStyle } from "@shopify/flash-list"
 import { ListItem, ListView, ListViewRef, Screen, Text } from "../../components"
 import { isRTL } from "../../i18n"
 import { DemoTabParamList, DemoTabScreenProps } from "../../navigators/DemoNavigator"
@@ -456,7 +456,6 @@ const $cardStyle: ViewStyle = {
   aspectRatio: 16 / 9,
   margin: spacing.sm,
   padding: spacing.sm,
-  flexWrap: "wrap",
   backgroundColor: colors.palette.primary200,
   borderRadius: 8,
   borderColor: colors.palette.accent100,
