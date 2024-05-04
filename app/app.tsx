@@ -98,10 +98,14 @@ function App(props: AppProps) {
     config,
   }
 
+  if (didFontLoadError) {
+    console.error(didFontLoadError);
+  }
+
   // otherwise, we're ready to render the app
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <ErrorBoundary catchErrors={Config.catchErrors} previousError={didFontLoadError ?? undefined}>
+      <ErrorBoundary catchErrors={Config.catchErrors}>
         <GestureHandlerRootView style={$container}>
           <AppNavigator
             linking={linking}
