@@ -319,12 +319,12 @@ const $item: ViewStyle = {
   padding: spacing.md,
   marginTop: spacing.md,
   backgroundColor: colors.palette.primary200,
-  minHeight: 120,
+  minHeight: spacing._120,
 }
 
 const $itemThumbnail: ImageStyle = {
   marginTop: spacing.sm,
-  borderRadius: 50,
+  borderRadius: spacing._50,
   alignSelf: "flex-start",
 }
 
@@ -356,7 +356,7 @@ const $metadataText: TextStyle = {
 }
 
 const $favoriteButton: ViewStyle = {
-  borderRadius: 17,
+  borderRadius: spacing._17,
   marginTop: spacing.md,
   justifyContent: "flex-start",
   backgroundColor: colors.palette.neutral300,
@@ -364,7 +364,7 @@ const $favoriteButton: ViewStyle = {
   paddingHorizontal: spacing.md,
   paddingTop: spacing.xxxs,
   paddingBottom: 0,
-  minHeight: 32,
+  minHeight: spacing._32,
   alignSelf: "flex-start",
 }
 

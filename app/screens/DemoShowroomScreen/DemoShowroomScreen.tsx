@@ -134,19 +134,11 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
       }
 
       const cardStyle = useAnimatedStyle(() => ({
-        width: 240,
-        aspectRatio: 16 / 9,
-        margin: spacing.sm,
-        padding: spacing.sm,
-        flexWrap: "wrap",
-        backgroundColor: colors.palette.primary200,
-        borderRadius: 8,
+        ...$cardStyle,
         borderWidth: borderWidthValue.value,
-        borderColor: colors.palette.accent100,
         transform: [{ scale: scaleValue.value }],
         shadowOpacity: scaleValue.value === 1 ? 0 : 0.5,
-        shadowRadius: scaleValue.value === 1 ? 0 : 10,
-        shadowColor: "#FFFFFF",
+        shadowRadius: scaleValue.value === 1 ? 0 : spacing._10,
         elevation: scaleValue.value === 1 ? 0 : 1.1,
       }))
 
@@ -288,7 +280,7 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
                   numColumns={1}
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  estimatedItemSize={240}
+                  estimatedItemSize={$cardWidth}
                 />
                 <FlashList
                   data={secondHalf}
@@ -298,7 +290,7 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
                   numColumns={1}
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  estimatedItemSize={240}
+                  estimatedItemSize={$cardWidth}
                 />
               </View>
             )}
@@ -368,6 +360,8 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
     )
   }
 
+const $cardWidth = spacing._224
+
 const $screenContainer: ViewStyle = {
   flex: 1,
   backgroundColor: colors.palette.neutral200,
@@ -436,20 +430,20 @@ const $demoUseCasesSpacer: ViewStyle = {
 }
 
 const $cardTitle: TextStyle = {
-  fontSize: 16,
+  fontSize: spacing._16,
   fontWeight: "bold",
-  marginStart: 16,
+  marginStart: spacing._16,
   marginBottom: spacing.sm,
   color: colors.text,
 }
 
 const $cardDescription: TextStyle = {
-  fontSize: 8,
+  fontSize: spacing._8,
   fontWeight: "bold",
-  marginStart: 24,
+  marginStart: spacing._24,
   marginBottom: spacing.sm,
-  width: 240,
-  lineHeight: 10,
+  width: $cardWidth,
+  lineHeight: spacing._10,
   color: colors.text,
 }
 
@@ -458,9 +452,15 @@ const $sectionListContainer: ViewStyle = {
 }
 
 const $cardStyle: ViewStyle = {
-  backgroundColor: "#fff",
+  width: $cardWidth,
+  aspectRatio: 16 / 9,
+  margin: spacing.sm,
+  padding: spacing.sm,
+  flexWrap: "wrap",
+  backgroundColor: colors.palette.primary200,
   borderRadius: 8,
-  padding: 16,
+  borderColor: colors.palette.accent100,
+  shadowColor: "#FFFFFF",
 }
 
 const $cardShadow: ViewStyle = {
