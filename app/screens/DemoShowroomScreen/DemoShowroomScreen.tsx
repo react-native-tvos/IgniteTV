@@ -8,7 +8,7 @@ import {
   Platform,
   SectionList,
   TextStyle,
-  TouchableWithoutFeedback,
+  Pressable,
   View,
   ViewStyle,
 } from "react-native"
@@ -143,13 +143,13 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
 
       return (
         <View>
-          <TouchableWithoutFeedback onPress={onPress} onFocus={handleFocus} onBlur={handleBlur}>
+          <Pressable onPress={onPress} onFocus={handleFocus} onBlur={handleBlur}>
             <View>
               <Animated.View style={[$cardStyle, cardStyle, $cardShadow]}>
                 <ImageBackground source={logo} resizeMode="center" style={$imageBackgroundCard} />
               </Animated.View>
             </View>
-          </TouchableWithoutFeedback>
+          </Pressable>
           <Text style={$cardTitle}>{title}</Text>
         </View>
       )
