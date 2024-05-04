@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/laquigi/Projects/IgniteTV/logs/.5328671c1141ac7b10b44a6d3d16285d03bd239a-audit.json",
+    "files": [
+        {
+            "date": 1713972445323,
+            "name": "/Users/laquigi/Projects/IgniteTV/logs/error-2024-04-24.log",
+            "hash": "8aeef5f1243563e865f0e3f60f416370"
+        }
+    ]
+}

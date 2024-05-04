@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/laquigi/Projects/IgniteTV/logs/.852f2690471353383871fa2a4bbdac211149f1a1-audit.json",
+    "files": [
+        {
+            "date": 1713972445326,
+            "name": "/Users/laquigi/Projects/IgniteTV/logs/keplerCliNative-2024-04-24.log",
+            "hash": "b24104bc390869b0029f6387180db60c"
+        }
+    ]
+}
