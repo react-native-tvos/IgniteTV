@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite"
 import React, { ComponentType, FC, useEffect, useMemo, useRef, useState } from "react"
-import { TextInput, TextStyle, TVFocusGuideView, ViewStyle } from "react-native"
+import { Platform, TextInput, TextStyle, TVFocusGuideView, ViewStyle } from "react-native"
 import { Button, Icon, Screen, Text, TextField, TextFieldAccessoryProps } from "../components"
 import { useStores } from "../models"
 import { AppStackScreenProps } from "../navigators"
@@ -75,7 +75,7 @@ export const LoginScreen: FC<LoginScreenProps> = observer(function LoginScreen(_
       <Text testID="login-heading" tx="loginScreen.signIn" preset="heading" style={$signIn} />
       <Text tx="loginScreen.enterDetails" preset="subheading" style={$enterDetails} />
       {attemptsCount > 2 && <Text tx="loginScreen.hint" size="sm" weight="light" style={$hint} />}
-      <TVFocusGuideView autoFocus>
+      <TVFocusGuideView autoFocus={Platform.OS === "android"}>
         <TextField
           value={authEmail}
           onChangeText={setAuthEmail}

@@ -28,40 +28,39 @@
     "web": "npx expo start --web",
     "bundle:web": "npx expo export --platform web",
     "serve:web": "npx server dist",
-    "prebuild:clean": "npx expo prebuild --clean",
-    "prebuild": "npx expo prebuild"
+    "prebuild:clean": "npx expo prebuild --clean"
   },
   "dependencies": {
     "@expo-google-fonts/space-grotesk": "^0.2.2",
-    "@expo/metro-runtime": "^3.1.1",
+    "@expo/metro-runtime": "~3.2.3",
     "@react-native-async-storage/async-storage": "^1.21.0",
-    "@react-navigation/bottom-tabs": "7.0.0-alpha.10",
-    "@react-navigation/native": "^7.0.0-alpha.9",
-    "@react-navigation/native-stack": "7.0.0-alpha.10",
+    "@react-navigation/bottom-tabs": "^7.0.0-alpha.22",
+    "@react-navigation/native": "^7.0.0-alpha.18",
+    "@react-navigation/native-stack": "^7.0.0-alpha.20",
     "@shopify/flash-list": "^1.6.3",
     "apisauce": "3.0.1",
     "date-fns": "^2.30.0",
-    "expo": "^50.0.11",
-    "expo-application": "~5.8.3",
-    "expo-build-properties": "~0.11.0",
-    "expo-font": "~11.10.3",
-    "expo-linking": "~6.2.2",
-    "expo-localization": "~14.8.3",
-    "expo-splash-screen": "~0.26.3",
-    "expo-status-bar": "~1.11.1",
-    "expo-system-ui": "~2.9.3",
+    "expo": "~51.0.39",
+    "expo-application": "~5.9.1",
+    "expo-build-properties": "~0.12.5",
+    "expo-font": "~12.0.10",
+    "expo-linking": "~6.3.1",
+    "expo-localization": "~15.0.3",
+    "expo-splash-screen": "~0.27.7",
+    "expo-status-bar": "~1.12.1",
+    "expo-system-ui": "~3.0.7",
     "i18n-js": "3.9.2",
     "mobx": "6.10.2",
     "mobx-react-lite": "4.0.5",
     "mobx-state-tree": "5.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "npm:react-native-tvos@^0.73.6-0",
+    "react-native": "npm:react-native-tvos@~0.74.5-0",
     "react-native-drawer-layout": "4.0.0-alpha.1",
-    "react-native-gesture-handler": "~2.14.0",
-    "react-native-reanimated": "~3.6.0",
-    "react-native-safe-area-context": "4.8.2",
-    "react-native-screens": "~3.29.0",
+    "react-native-gesture-handler": "~2.16.1",
+    "react-native-reanimated": "~3.10.1",
+    "react-native-safe-area-context": "4.10.5",
+    "react-native-screens": "3.31.1",
     "react-native-web": "~0.19.6"
   },
   "devDependencies": {
@@ -74,7 +73,7 @@
     "@babel/plugin-transform-template-literals": "^7.0.0",
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.20.0",
-    "@react-native-tvos/config-tv": "^0.0.7",
+    "@react-native-tvos/config-tv": "~0.1.1",
     "@types/i18n-js": "3.8.2",
     "@types/jest": "^29.2.1",
     "@types/react": "~18.2.14",
@@ -92,7 +91,7 @@
     "eslint-plugin-react-native": "4.0.0",
     "eslint-plugin-reactotron": "^0.1.2",
     "jest": "^29.2.1",
-    "jest-expo": "~50.0.3",
+    "jest-expo": "~51.0.4",
     "patch-package": "6.4.7",
     "postinstall-prepare": "1.0.1",
     "prettier": "2.8.8",
@@ -103,7 +102,7 @@
     "reactotron-react-native": "^5.0.5",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
-    "typescript": "5.3.2"
+    "typescript": "~5.3.3"
   },
   "expo": {
     "install": {
@@ -193,5 +192,6 @@
       "space-before-function-paren": 0,
       "reactotron/no-tron-in-production": "error"
     }
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

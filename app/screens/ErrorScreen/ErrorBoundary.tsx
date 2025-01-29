@@ -4,6 +4,7 @@ import { ErrorDetails } from "./ErrorDetails"
 interface Props {
   children: ReactNode
   catchErrors: "always" | "dev" | "prod" | "never"
+  previousError?: Error
 }
 
 interface State {
@@ -22,7 +23,10 @@ interface State {
  * @returns {JSX.Element} The rendered `ErrorBoundary` component.
  */
 export class ErrorBoundary extends Component<Props, State> {
-  state = { error: null, errorInfo: null }
+  state = {
+    error: this.props.previousError || null,
+    errorInfo: this.props.previousError ? { componentStack: this.props.previousError.stack } : null,
+  }
 
   // If an error in a child is encountered, this will run
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
