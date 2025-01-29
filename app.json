@@ -78,8 +78,7 @@
         {
           "ios": {
             "newArchEnabled": true,
-            "flipper": false,
-            "deploymentTarget": "13.4"
+            "flipper": false
           },
           "android": {
             "newArchEnabled": true
