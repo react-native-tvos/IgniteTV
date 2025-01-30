@@ -72,21 +72,9 @@
         }
       ],
       "expo-font",
-      "expo-localization",
-      [
-        "expo-build-properties",
-        {
-          "ios": {
-            "newArchEnabled": true,
-            "flipper": false,
-            "deploymentTarget": "13.4"
-          },
-          "android": {
-            "newArchEnabled": true
-          }
-        }
-      ]
+      "expo-localization"
     ],
+    "newArchEnabled": true,
     "experiments": {
       "tsconfigPaths": true
     }

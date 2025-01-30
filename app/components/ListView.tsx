@@ -1,15 +1,11 @@
 import React, { forwardRef, PropsWithoutRef } from "react"
-import { FlatList, FlatListProps } from "react-native"
-// import { isRTL } from "app/i18n"
-// import { FlashList, FlashListProps } from "@shopify/flash-list"
+import { FlatList } from "react-native"
+import { isRTL } from "app/i18n"
+import { FlashList, FlashListProps } from "@shopify/flash-list"
 
-// export type ListViewRef<T> = FlashList<T> | FlatList<T>
+export type ListViewRef<T> = FlashList<T> | FlatList<T>
 
-// export type ListViewProps<T> = PropsWithoutRef<FlashListProps<T>>
-
-export type ListViewRef<T> = FlatList<T>
-
-export type ListViewProps<T> = PropsWithoutRef<FlatListProps<T>>
+export type ListViewProps<T> = PropsWithoutRef<FlashListProps<T>>
 
 /**
  * This is a Higher Order Component meant to ease the pain of using @shopify/flash-list
@@ -30,11 +26,9 @@ export type ListViewProps<T> = PropsWithoutRef<FlatListProps<T>>
  */
 const ListViewComponent = forwardRef(
   <T,>(props: ListViewProps<T>, ref: React.ForwardedRef<ListViewRef<T>>) => {
-    // const ListComponentWrapper = isRTL ? FlatList : FlashList
-    const ListComponentWrapper = FlatList
+    const ListComponentWrapper = isRTL ? FlatList : FlashList
 
-    // return <ListComponentWrapper {...props} estimatedItemSize={57} ref={ref} />
-    return <ListComponentWrapper {...props} ref={ref} />
+    return <ListComponentWrapper {...props} estimatedItemSize={57} ref={ref} />
   },
 )
 

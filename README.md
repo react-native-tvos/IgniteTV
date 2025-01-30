@@ -25,8 +25,7 @@ To try TV builds:
 
 ```sh
 yarn
-export EXPO_TV=1
-npx expo prebuild --clean
+yarn prebuild:tv
 yarn ios # Builds and runs the Ignite boilerplate on Apple TV
 yarn android --device tv_api_31 # Builds and runs the Ignite boilerplate on the named Android TV emulator
 ```
@@ -34,8 +33,7 @@ yarn android --device tv_api_31 # Builds and runs the Ignite boilerplate on the 
 To go back to phone builds:
 
 ```sh
-unset EXPO_TV
-npx expo prebuild --clean
+yarn prebuild
 yarn ios # Builds and runs the Ignite boilerplate on an iPhone simulator
 yarn android --device pixel_6_api_31 # Builds and runs the Ignite boilerplate on the named Android phone emulator
 ```
