@@ -11,4 +11,12 @@ config.transformer.getTransformOptions = async () => ({
   },
 });
 
+// Prevent a bundling issue with axios
+// https://github.com/facebook/metro/issues/1272
+config.resolver.unstable_conditionNames = [
+  'browser',
+  'require',
+  'react-native',
+];
+
 module.exports = config;
