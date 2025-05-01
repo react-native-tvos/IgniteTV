@@ -1,4 +1,4 @@
-# Welcome to your new ignited app!
+# Welcome to your new Ignited app!
 
 ## The latest and greatest boilerplate for Infinite Red opinions
 
@@ -34,6 +34,12 @@ To go back to phone builds:
 yarn prebuild
 yarn ios # Builds and runs the Ignite boilerplate on an iPhone simulator
 yarn android --device pixel_6_api_31 # Builds and runs the Ignite boilerplate on the named Android phone emulator
+```
+
+To run on web:
+
+```sh
+yarn web
 ```
 
 You can initiate your own TV app by executing
