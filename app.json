@@ -21,6 +21,7 @@
       "**/*"
     ],
     "android": {
+      "edgeToEdgeEnabled": true,
       "icon": "./assets/images/app-icon-android-legacy.png",
       "package": "com.ignitetv",
       "adaptiveIcon": {
@@ -72,7 +73,8 @@
         }
       ],
       "expo-font",
-      "expo-localization"
+      "expo-localization",
+      "expo-build-properties"
     ],
     "newArchEnabled": true,
     "experiments": {
