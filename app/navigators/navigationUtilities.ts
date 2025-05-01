@@ -27,6 +27,11 @@ type Storage = typeof storage
 export const navigationRef = createNavigationContainerRef<AppStackParamList>()
 
 /**
+ * Pivot to using a mobile layout or a TV layout. On web, we will also use the TV layout.
+ */
+export const tvLayout = Platform.isTV || Platform.OS === "web"
+
+/**
  * Gets the current screen from any navigation state.
  * @param {NavigationState | PartialState<NavigationState>} state - The navigation state to traverse.
  * @returns {string} - The name of the current screen.
@@ -87,10 +92,10 @@ export function useBackButtonHandler(canExit: (routeName: string) => boolean) {
     }
 
     // Subscribe when we come to life
-    BackHandler.addEventListener("hardwareBackPress", onBackPress)
+    const backHandlerSubscription = BackHandler.addEventListener("hardwareBackPress", onBackPress)
 
     // Unsubscribe when we're done
-    return () => BackHandler.removeEventListener("hardwareBackPress", onBackPress)
+    return () => backHandlerSubscription.remove()
   }, [])
 }
 
@@ -123,7 +128,7 @@ export function useNavigationPersistence(storage: Storage, persistenceKey: strin
   const initNavState = navigationRestoredDefaultState(Config.persistNavigation)
   const [isRestored, setIsRestored] = useState(initNavState)
 
-  const routeNameRef = useRef<keyof AppStackParamList | undefined>()
+  const routeNameRef = useRef<keyof AppStackParamList | undefined>(undefined)
 
   const onNavigationStateChange = (state: NavigationState | undefined) => {
     const previousRouteName = routeNameRef.current

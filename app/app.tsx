@@ -99,7 +99,7 @@ function App(props: AppProps) {
   }
 
   if (didFontLoadError) {
-    console.error(didFontLoadError);
+    console.error(didFontLoadError)
   }
 
   // otherwise, we're ready to render the app

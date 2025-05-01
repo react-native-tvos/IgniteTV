@@ -3,13 +3,14 @@ import React, { FC, ReactElement, useEffect, useRef, useState } from "react"
 import { Image, ImageStyle, Platform, SectionList, TextStyle, View, ViewStyle } from "react-native"
 import { Drawer } from "react-native-drawer-layout"
 import { type ContentStyle } from "@shopify/flash-list"
-import { ListItem, ListView, ListViewRef, Screen, Text } from "../../components"
+import { ListItem, ListView, Screen, Text } from "../../components"
 import { isRTL } from "../../i18n"
 import { DemoTabParamList, DemoTabScreenProps } from "../../navigators/DemoNavigator"
 import { colors, spacing } from "../../theme"
 import { useSafeAreaInsetsStyle } from "../../utils/useSafeAreaInsetsStyle"
 import * as Demos from "./demos"
 import { DrawerIconButton } from "./DrawerIconButton"
+import { tvLayout } from "app/navigators"
 
 const logo = require("../../../assets/images/logo.png")
 
@@ -38,14 +39,18 @@ const WebListItem: FC<DemoListItem> = ({ item, sectionIndex }) => {
 
   return (
     <View>
-      <Link to={`/showroom/${sectionSlug}`} style={$menuContainer}>
+      <Link screen="DemoShowroom" params={{ queryIndex: sectionSlug }} style={$menuContainer}>
         <Text preset="bold">{item.name}</Text>
       </Link>
       {item.useCases.map((u) => {
         const itemSlug = slugify(u)
 
         return (
-          <Link key={`section${sectionIndex}-${u}`} to={`/showroom/${sectionSlug}/${itemSlug}`}>
+          <Link
+            key={`section${sectionIndex}-${u}`}
+            screen="DemoShowroom"
+            params={{ queryIndex: sectionSlug, itemIndex: itemSlug }}
+          >
             <Text>{u}</Text>
           </Link>
         )
@@ -129,9 +134,9 @@ const ShowroomListItem = Platform.select({ web: WebListItem, default: NativeList
 export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
   function DemoShowroomScreen(_props) {
     const [open, setOpen] = useState(false)
-    const timeout = useRef<ReturnType<typeof setTimeout>>()
+    const timeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
     const listRef = useRef<SectionList>(null)
-    const menuRef = useRef<ListViewRef<DemoListItem["item"]>>(null)
+    const menuRef = useRef<any>(undefined)
     const route = useRoute<RouteProp<DemoTabParamList, "DemoShowroom">>()
     const params = route.params
 
@@ -191,13 +196,14 @@ export const DemoShowroomScreen: FC<DemoTabScreenProps<"DemoShowroom">> =
       )
     }
 
-    useEffect(() => {
-      return () => timeout.current && clearTimeout(timeout.current)
-    }, [])
+    const timeoutEffect: any = () => {
+      timeout.current && clearTimeout(timeout.current)
+    }
+    useEffect(timeoutEffect, [])
 
     const $drawerInsets = useSafeAreaInsetsStyle(["top"])
 
-    if (Platform.isTV) {
+    if (tvLayout) {
       return (
         <View style={$tvScreenContainer}>
           <ShowroomDemoList menuRef={menuRef} handleScroll={handleScroll} />

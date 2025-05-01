@@ -5,7 +5,7 @@ import {
 } from "@react-navigation/bottom-tabs"
 import { CompositeScreenProps } from "@react-navigation/native"
 import React from "react"
-import { Platform, Pressable, TextStyle, ViewStyle } from "react-native"
+import { Pressable, TextStyle, ViewStyle } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon } from "../components"
 import { translate } from "../i18n"
@@ -13,6 +13,7 @@ import { DemoCommunityScreen, DemoShowroomScreen, DemoDebugScreen } from "../scr
 import { DemoPodcastListScreen } from "../screens/DemoPodcastListScreen"
 import { colors, spacing, typography } from "../theme"
 import { AppStackParamList, AppStackScreenProps } from "./AppNavigator"
+import { tvLayout } from "./navigationUtilities"
 
 export type DemoTabParamList = {
   DemoCommunity: undefined
@@ -52,9 +53,9 @@ export function DemoNavigator() {
     )
   }
 
-  const iconSize = Platform.isTV ? spacing._20 : spacing._30
+  const iconSize = tvLayout ? spacing._20 : spacing._30
 
-  const tabBarHeight = Platform.isTV ? top + spacing._70 : bottom + spacing._70
+  const tabBarHeight = tvLayout ? top + spacing._70 : bottom + spacing._70
 
   return (
     <Tab.Navigator
@@ -66,7 +67,7 @@ export function DemoNavigator() {
         tabBarInactiveTintColor: colors.text,
         tabBarLabelStyle: $tabBarLabel,
         tabBarItemStyle: $tabBarItem,
-        tabBarPosition: Platform.isTV ? "top" : "bottom",
+        tabBarPosition: tvLayout ? "top" : "bottom",
       }}
     >
       <Tab.Screen
