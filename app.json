@@ -20,6 +20,11 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/images/app-icon-web-favicon.png",
+      "output": "static"
+    },
     "android": {
       "edgeToEdgeEnabled": true,
       "icon": "./assets/images/app-icon-android-legacy.png",
