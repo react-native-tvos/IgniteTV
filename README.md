@@ -1,7 +1,5 @@
 # Welcome to your new ignited app!
 
-[![CircleCI](https://circleci.com/gh/infinitered/ignite.svg?style=svg)](https://circleci.com/gh/infinitered/ignite)
-
 ## The latest and greatest boilerplate for Infinite Red opinions
 
 This is the boilerplate that [Infinite Red](https://infinite.red) uses as a way to test bleeding-edge changes to our React Native stack.
@@ -16,7 +14,7 @@ Currently includes:
 
 ## TV quick start
 
-This app uses Expo SDK 50, the React Native for TV repo, and the config plugin `@react-native-tvos/config-tv`. With these changes, prebuild is able to configure the iOS and Android folders for Apple TV and Android TV builds.
+This app uses the Expo SDK, the React Native for TV repo, and the config plugin `@react-native-tvos/config-tv`. With these changes, prebuild is able to configure the iOS and Android folders for Apple TV and Android TV builds.
 
 To try TV builds:
 
@@ -54,7 +52,6 @@ The original demo code will work on TV, once the required dependencies and `app.
 - Addition of a banner image for the Android TV app list
 - Addition of Apple TV brand assets (icon and top shelf images)
 - Focus guide to improve navigation in the login screen
-- React Navigation 7.0.0 alpha, to allow the tab navigator to appear at the top of the screen for TV
 
 ## Quick Start
 
