@@ -44,6 +44,7 @@
     "expo": "^55.0.0-preview.11",
     "expo-application": "~55.0.6",
     "expo-build-properties": "~55.0.7",
+    "expo-dev-client": "~55.0.6",
     "expo-font": "~55.0.4",
     "expo-linking": "~55.0.4",
     "expo-localization": "~55.0.6",
