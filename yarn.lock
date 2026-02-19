@@ -3972,10 +3972,10 @@ eslint-plugin-react@7.30.0:
     semver "^6.3.0"
     string.prototype.matchall "^4.0.7"
 
-eslint-plugin-reactotron@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-reactotron/-/eslint-plugin-reactotron-0.1.7.tgz#793b5020c735a70f22dda518052234809706e06c"
-  integrity sha512-SdzVliE/SZ6J/Q1CZ701PBdOm0sinJwPQVYlTY/g4mOIfKaaeQCg8LQiuMKg1QNUTLz5IcrQ18svXTUlSwkbSg==
+eslint-plugin-reactotron@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-reactotron/-/eslint-plugin-reactotron-0.1.9.tgz#1d7d62ea91b7017cec5a68ebe1203609412cf052"
+  integrity sha512-Gcy3TCiEYPNHObU26l+Z4PCpTQ+RC8Ifw/s31eQlh/1pg42G/xwV8kKrsRLIZ1UEXid3scGSQPO+LDBZ+JNWEQ==
 
 eslint-scope@^7.1.1:
   version "7.2.2"
@@ -7039,40 +7039,52 @@ react@19.2.0:
   resolved "https://registry.yarnpkg.com/react/-/react-19.2.0.tgz#d33dd1721698f4376ae57a54098cb47fc75d93a5"
   integrity sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==
 
-reactotron-core-client@2.9.7, reactotron-core-client@^2.9.7:
-  version "2.9.7"
-  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.9.7.tgz#c1fd2842b095dbd2c7522cfc6bd59e34768038eb"
-  integrity sha512-QWd0ekjU71CQL70J87NT5f7cmIJAMVZND+YgOaaUgmgFjhiXzHrpeIWs19+IFQPVLsJr97gdi58X8Y62Hchs9w==
+reactotron-core-client@2.9.8:
+  version "2.9.8"
+  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.9.8.tgz#763436e8465da3a631044276609c5ead68959174"
+  integrity sha512-WsE+DmJhFGfBaafUHpkhWuJITNGfSDVofjK32rN3RGUBcaEXoYDFiiO/z/0vnOdGpZqZ+OH95Pa9x6LVywOMcA==
   dependencies:
-    reactotron-core-contract "0.2.5"
+    reactotron-core-contract "0.3.1"
 
-reactotron-core-contract@0.2.5:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/reactotron-core-contract/-/reactotron-core-contract-0.2.5.tgz#927160c026895798bfe931bd2462fdd5d4e435f9"
-  integrity sha512-pxuXFG1jffAWQSdT0FBws+/Xvl8++6T6WrAi4g7AxIZU5FPeut2wq//0yDhDWx6lF82eAo5JTZK7zECQy45QxA==
+reactotron-core-client@2.9.9, reactotron-core-client@^2.9.9:
+  version "2.9.9"
+  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.9.9.tgz#93ac2122d215084502fd87bf56e8fde8fef07879"
+  integrity sha512-caI6ZWpfV/gNeCBhm6alxuCpOxYEFxg9FsgVaOXJWZeKjK2egjxkXcUEFWeS3b9mC6Kwi7Wuu79zfeGtkbdAYw==
+  dependencies:
+    reactotron-core-contract "0.3.2"
 
-reactotron-mst@^3.1.11:
-  version "3.1.11"
-  resolved "https://registry.yarnpkg.com/reactotron-mst/-/reactotron-mst-3.1.11.tgz#90a3e77510a7c7f61b71102be165c4e8e43cd20c"
-  integrity sha512-G/t+6z6e70mInstRhf5hmT8iFwgQEaS0kJBYAXRDJ1sLgrxJEchGfrBc+LDRDT/Bze6EvSWEG+wcPbr1iNbM2Q==
+reactotron-core-contract@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/reactotron-core-contract/-/reactotron-core-contract-0.3.1.tgz#2aaa17b963624e011c267311ea7f62999b6d9f92"
+  integrity sha512-/grw56j/VRXsm+cL2IWNWGhg5x70UZwgFzUvo0vZ+8gE1eqaeXGKMz7pfmfva56E7lk7CCxDtCi2s4CPrfgxqw==
+
+reactotron-core-contract@0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/reactotron-core-contract/-/reactotron-core-contract-0.3.2.tgz#b88bb7b411a6247b02dae90234c5ea0755738acf"
+  integrity sha512-39ZNLfxxV7WEOszekIRg56F6VFZrQk7+Lei+8MccNESX3VbQzs1uex/GNesxk6CMTS6ytwqYIBAgLyc9WX/PaA==
+
+reactotron-mst@^3.1.12:
+  version "3.1.12"
+  resolved "https://registry.yarnpkg.com/reactotron-mst/-/reactotron-mst-3.1.12.tgz#89c8d94e7be8ddaef877eb6f735abc5b40c6cc8f"
+  integrity sha512-7NdouS4reQLLyo/9KO7rPyc0RR1QSDq4A+LinSgOCNdb5ClKSSfyqZWs9A0wfYDTXD8RHDVn/DzvSvqkGqKXcQ==
   dependencies:
     ramda "^0.28.0"
 
-reactotron-react-js@^3.3.16:
-  version "3.3.16"
-  resolved "https://registry.yarnpkg.com/reactotron-react-js/-/reactotron-react-js-3.3.16.tgz#a8ef405171518903b05f3b591232e829e7daeefa"
-  integrity sha512-6IY3faYFGgGchS08cZxwiVPE4NosRzynJrQVbWJc12nUI8t4XnldBsdvAy+FVDOaFxYW1S0dR5Hgh3oCzEwXng==
+reactotron-react-js@^3.3.17:
+  version "3.3.17"
+  resolved "https://registry.yarnpkg.com/reactotron-react-js/-/reactotron-react-js-3.3.17.tgz#48084dac0e5f5a79786ac4da93b932cc5d906e6f"
+  integrity sha512-pNoewswTjRQarQZGvmJnPre0S9S5EUgQa59vGdhZ3XotUi0lEfStBk3CwLldcHM/xvd3up65CNpKp8/la/6cDg==
   dependencies:
-    reactotron-core-client "2.9.7"
+    reactotron-core-client "2.9.8"
     stacktrace-js "2.0.1"
 
-reactotron-react-native@^5.1.13:
-  version "5.1.13"
-  resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-5.1.13.tgz#6b3d7835d41bb68e8d497d77ae022a72dd16500d"
-  integrity sha512-+mlAzW9DIOfWkz0v3OoquX9uhvvCzJNczx2YBfU+22TxorpaC/nSVddi63qxoL9q4lNScw4EqXSEbdra1jbNaQ==
+reactotron-react-native@^5.1.18:
+  version "5.1.18"
+  resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-5.1.18.tgz#50e3645d1c9431b684f0a605923eb8beb4cba1b8"
+  integrity sha512-Nyb/w7tRQICtfvjAJSN6Q/3aRO8L6eTfEcWpDR/atUyoINkyzducMx6yXA+sz1mazxivY16N3VPkmQ1XohQAcg==
   dependencies:
     mitt "^3.0.1"
-    reactotron-core-client "2.9.7"
+    reactotron-core-client "2.9.9"
 
 reflect.getprototypeof@^1.0.6, reflect.getprototypeof@^1.0.9:
   version "1.0.10"
