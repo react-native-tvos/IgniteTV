@@ -26,7 +26,6 @@
       "output": "static"
     },
     "android": {
-      "edgeToEdgeEnabled": true,
       "icon": "./assets/images/app-icon-android-legacy.png",
       "package": "com.ignitetv",
       "adaptiveIcon": {
@@ -81,7 +80,6 @@
       "expo-localization",
       "expo-build-properties"
     ],
-    "newArchEnabled": true,
     "experiments": {
       "tsconfigPaths": true
     }
