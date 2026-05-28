@@ -21,9 +21,13 @@
       "**/*"
     ],
     "web": {
-      "bundler": "metro",
       "favicon": "./assets/images/app-icon-web-favicon.png",
-      "output": "static"
+      "splash": {
+        "image": "./assets/images/splash-logo-web.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#191015"
+      },
+      "bundler": "metro"
     },
     "android": {
       "icon": "./assets/images/app-icon-android-legacy.png",
@@ -51,15 +55,6 @@
       },
       "userInterfaceStyle": "light"
     },
-    "web": {
-      "favicon": "./assets/images/app-icon-web-favicon.png",
-      "splash": {
-        "image": "./assets/images/splash-logo-web.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#191015"
-      },
-      "bundler": "metro"
-    },
     "plugins": [
       [
         "@react-native-tvos/config-tv",
@@ -78,7 +73,9 @@
       ],
       "expo-font",
       "expo-localization",
-      "expo-build-properties"
+      "expo-build-properties",
+      "expo-splash-screen",
+      "expo-status-bar"
     ],
     "experiments": {
       "tsconfigPaths": true
